@@ -46,7 +46,8 @@ def image_feature(path, image_size):
     return features,img_names
 
 if __name__ == '__main__':
-    img_path = "/Users/jianwu/Data/ECRP_ERA5/version-2/sst"
+    var_name = "u10"
+    img_path = "/Volumes/GoogleDrive/.shortcut-targets-by-id/1vfQuEpjPQbXwHTxqAw34ALMoA45PJ7KQ/ECRP_Data_Science/Zheng/new_data_images/" + var_name
     work_dir = "/Users/jianwu/Data/ECRP_ERA5/version-2/csv"
     # the size of the new figure is 41x41
     img_features, img_names = image_feature(img_path, (41, 41))
@@ -54,8 +55,8 @@ if __name__ == '__main__':
     #save original features
     img_features_df = pd.DataFrame(img_features)
     img_features_df['file_name'] = img_names
-    sst_csv_path = work_dir + "/sst.csv"
-    img_features_df.to_csv(sst_csv_path, index=False)
+    csv_path = work_dir + "/" + var_name + ".csv"
+    img_features_df.to_csv(csv_path, index=False)
 
     #clustering based original features
     k = 3
@@ -63,8 +64,8 @@ if __name__ == '__main__':
     clusters.fit(img_features)
     image_cluster = pd.DataFrame(img_names, columns=['image'])
     image_cluster["clusterid"] = clusters.labels_
-    sst_clustering_path = work_dir + "/sst_clusters.csv"
-    image_cluster.to_csv(sst_clustering_path, index=False)
+    clustering_path = work_dir + "/" + var_name + "_clusters.csv"
+    image_cluster.to_csv(clustering_path, index=False)
 
     #conduct PCA and save its results
     img_features_df = pd.DataFrame(img_features)
@@ -73,8 +74,8 @@ if __name__ == '__main__':
     img_reduced_features = pca.fit_transform(img_features_df)
     img_reduced_features_df = pd.DataFrame(img_reduced_features)
     img_reduced_features_df['file_name'] = img_names
-    sst_pca_csv_path = work_dir + "/sst_pca.csv"
-    img_reduced_features_df.to_csv(sst_pca_csv_path, index=False)
+    pca_csv_path = work_dir + "/" + var_name + "_pca.csv"
+    img_reduced_features_df.to_csv(pca_csv_path, index=False)
 
     #clustering based reduced features
     k = 3
@@ -83,5 +84,7 @@ if __name__ == '__main__':
     image_cluster = pd.DataFrame(img_names, columns=['image'])
     image_cluster["clusterid"] = clusters.labels_
     image_cluster
-    sst_clustering_path = work_dir + "/sst_pca_clusters.csv"
-    image_cluster.to_csv(sst_clustering_path, index=False)
+    pca_clustering_path = work_dir + "/" + var_name + "_pca_clusters.csv"
+    image_cluster.to_csv(pca_clustering_path, index=False)
+
+    print("done!")
