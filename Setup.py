@@ -11,7 +11,7 @@ with open("requirements.txt") as f:
             install_requires.add(dep)
 
 setup(
-    name = "MWDC_test",
+    name = "MWDC",
     version = "1.0.0",
     author = "Mostafa Cham",
     author_email = "mostafa.cham97@gmail.com",
