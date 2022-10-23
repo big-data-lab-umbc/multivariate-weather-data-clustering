@@ -31,17 +31,47 @@ from MWDC import evaluation
 
 ## Modules Documentation
 
-#### - clustering
+### preprocessing
+
+| Functions                   | Description                                                 |
+| :-------------------------- | :---------------------------------------------------------- |
+| `transformddaily(x)`        | Transformation function for Daily Data                      |
+| `transformdmock(x)`         | Transformation function for Mock Data                       |
+| `transformqm(x)`            | Variable for Quater Map                                     |
+| `datatransformation(input)` | Description in the Note below\*                             |
+| `datanormalization(input)`  | Input in this case will be the transformed pandas dataframe |
+| `null_fill(input)`          | Function to input NaN values across variables               |
+| `pca1(data, n)`             | data is data to be input , n is the number of components    |
+
+\*Note: This function is used to transform the xarray dataset into a pandas dataframe where the dimension "time" would become the index of the DataFrame and,
+pairs of both dimensions "latitude" and "longitude" will become the columns for each variable
+
+### clustering
+
+#### - DBscan
 
 | Functions                        | Description                                                     |
 | :------------------------------- | :-------------------------------------------------------------- |
 | `dbscanreal(x, eps1=0.5, min=5)` | eps1 for epsilon , min for minimum samples, x is for data input |
 
-#### - dim_reduction
+#### - Kmeans
 
-| Functions       | Description                                              |
-| :-------------- | :------------------------------------------------------- |
-| `pca1(data, n)` | data is data to be input , n is the number of components |
+| Functions                                                                      | Description |
+| :----------------------------------------------------------------------------- | :---------- |
+| `Kmeans(n_cluster).fit(xarray_data, PCA=(boolian), pass_trans_data=(boolian))` | \*          |
+| `Kmeans(n_cluster).evaluate(z, PCA=(boolian), pass_trans_data=(boolian))`      | \*\*        |
+
+\* This function fits the K-means model to the data that is passed to it.  
+ Parameters that this function will accept are as follows:  
+ 1. xarray_data = string of the name of the original xarray file  
+ 2. PCA (bool) = whether or not PCA has to be applied. Default value is True.  
+ 3. pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
+
+\*\* This function evaluates and assigns data points to clusters.
+Parameters that this function will accept are as follows:  
+ 1. z = string of the name of the original xarray file.  
+ 2. PCA (bool) = whether or not PCA has to be applied. Default value is True.  
+ 3. pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
 
 #### - evaluation
 
@@ -50,30 +80,6 @@ from MWDC import evaluation
 | `RMSE()`              | input, formed_clusters, frame, normalize=False                                   |
 | `Spat_Corr()`         | input, formed_clusters, trans_data, normalize=False                              |
 | `silhouette_score1()` | X, labels, \*, metric="euclidean", sample_size=None, random_state=None, \*\*kwds |
-
-#### - normalization
-
-| Functions                  | Description                                                 |
-| :------------------------- | :---------------------------------------------------------- |
-| `datanormalization(input)` | Input in this case will be the transformed pandas dataframe |
-
-#### - physics_based
-
-| Functions          | Description                                   |
-| :----------------- | :-------------------------------------------- |
-| `null_fill(input)` | Function to input NaN values across variables |
-
-#### - transformation
-
-| Functions                   | Description                            |
-| :-------------------------- | :------------------------------------- |
-| `transformddaily(x)`        | Transformation function for Daily Data |
-| `transformdmock(x)`         | Transformation function for Mock Data  |
-| `transformqm(x)`            | Variable for Quater Map                |
-| `datatransformation(input)` | Description in the Note below\*        |
-
-\*Note: This function is used to transform the xarray dataset into a pandas dataframe where the dimension "time" would become the index of the DataFrame and,
-pairs of both dimensions "latitude" and "longitude" will become the columns for each variable
 
 #### - visualization
 
