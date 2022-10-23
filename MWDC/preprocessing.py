@@ -1,10 +1,10 @@
 
-# import pandas as pd
-# import numpy as np
-# import xarray as xr
-# import netCDF4 as nc
-# from sklearn.preprocessing import StandardScaler
-# import dask.dataframe
+import pandas as pd
+import numpy as np
+import xarray as xr
+import netCDF4 as nc
+from sklearn.preprocessing import StandardScaler
+import dask.dataframe
 
 ### Transforming Data & Standardizing features by removing the mean and scaling to unit variance. ###
 
@@ -150,3 +150,70 @@ def datatransformation(input):
         return trans_data
 
 
+
+######################## physics based #######################
+
+#Function to input NaN values across variables
+
+def null_fill(input):
+
+  dask_df = input.to_dask_dataframe(dim_order=None, set_index=False)
+  pd_df = dask_df.compute()
+  pd_df1 = pd_df.iloc[:, 3:]
+  df2 = pd_df1[pd_df1.isnull().any(axis=1)]
+  lst = list(df2.index.values)
+  df2.loc[:] = np.nan
+  dt = pd.concat([pd_df1, df2], axis=0)
+  dt3 = dt[~dt.index.duplicated(keep='last')]
+  dt4 = dt3[['sst', 'sp', 'u10', 'v10', 'sshf', 'slhf', 't2m']]
+  pd_df4 = pd_df.iloc[:, 0:5]
+  dff = pd_df4[['time', 'longitude', 'latitude', 'sst']]
+  df = pd.merge(dff, dt4, left_index=True, right_index=True).drop('sst_y', axis=1)
+  df.rename(columns={'sst_x':'sst'}, inplace=True)
+  df_rows = pd.DataFrame(df).set_index(["time", "longitude", "latitude"])
+  data = xr.Dataset.from_dataframe(df_rows)
+  df_rows = pd.DataFrame(df).set_index(["time", "longitude", "latitude"])
+  data = xr.Dataset.from_dataframe(df_rows)
+
+  return data
+
+  ################## end of physics based ##################
+
+  #################### Data Normilization #################
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+
+def datanormalization(input):
+    ''' This function is used to normalize the data that is passed to it. Input in this case will be the transformed pandas dataframe. '''
+    x = input.values # returns a numpy array
+    min_max_scaler = MinMaxScaler() # calling the function
+    x_scaled = min_max_scaler.fit_transform(x) # x_scaled will hold the values of the normalized data
+    
+    # trans_data will hold the same columns and index of the dataframe that is passed to it. And the values will be the ones saved in x_scaled
+    trans_data = pd.DataFrame(x_scaled, columns=input.columns, index=input.index)
+        
+    return trans_data
+
+################ end of data normalization ################
+
+######## PCA #########
+
+from sklearn.decomposition import PCA
+
+def pca1(data,n): # data is data to be input , n is the number of components 
+  pca = PCA(n_components=n) 
+  pca.fit(data)
+
+  # Get pca scores
+  pca_scores = pca.transform(data)
+
+  # Convert pca_scores to a dataframe
+  scores_df = pd.DataFrame(pca_scores)
+
+  # Round to two decimals
+  scores_df = scores_df.round(2)
+
+  # Return scores
+  return scores_df
+
+######## End of PCA #########
