@@ -17,7 +17,7 @@ setup(
     author_email = "mostafa.cham97@gmail.com",
     url = "https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git",
     install_requires = list(install_requires),
-    packages = find_packages(exclude=("tests*" , "archive*")),
+    packages = find_packages(exclude=("example*" , "archive*", "Benchmark")),
     long_description=long_description,
     
 )
