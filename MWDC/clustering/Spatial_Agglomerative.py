@@ -23,31 +23,31 @@ from sklearn.cluster import AgglomerativeClustering
 
 K = input("Enter your desired number of clusters: ")
 
-proximity = input("Enter your desired proximity metric() defaulst is euclidean : ")
+proximity = input("Enter your desired proximity metric(defaulst is euclidean) : ")
 
 link = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
 
-def spatial_agglomerative(input, formed_clusters, n_clusters = K, affinity = proximity, linkage = link):
+components = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
+
+def spatial_agglomerative(input, n_clusters = K, affinity = proximity, linkage = link):
   '''
-  input: 4-D transformed spatio-temporal dataframe
+  input: 
+        datatype: 4-D spatio-temporal xarray
 
-  formed_clusters: 1-D array of cluster labels in the size of our inpit row index
+        n_clusters: The number of our desired clusters
 
-  n_clusters: The number of our desired clusters
+        affinity: The distance or proximity metric used (euclidean in most cases)
 
-  affinity: The distance or proximity metric used (euclidean in most cases)
+        linkage: Linkage criteria
 
-  linkage: Linkage criteria
+  Output:
+         
+        formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
+                         to a cluster label
+
+        A dataframe showing each cluster label and the correcponding cluster size.
      
   '''
-
-  # #Initialize parameters
-  # K = input("Enter your desired number of clusters: ")
-
-  # proximity = input("Enter your desired proximity metric() defaulst is euclidean : ")
-
-  # link = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
-
 
   #calling function that inputs null values
   data = null_input(input)
@@ -57,6 +57,9 @@ def spatial_agglomerative(input, formed_clusters, n_clusters = K, affinity = pro
 
   #Normalize data
   norm_data = datanormalization(trans_data)
+
+  #calling function that reduces the dimension
+  pca = PCA(n_components=components)
 
   '''
 
