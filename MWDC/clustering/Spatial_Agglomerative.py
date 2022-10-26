@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1svl8okmAK6jw6Ahd3s20OZpTwxPSCE_6
 """
 
+# !pip install "dask[dataframe]" Needed for data transformation
+
 import pandas as pd
 import numpy as np
 import xarray as xr
@@ -23,11 +25,11 @@ from sklearn.cluster import AgglomerativeClustering
 
 K = input("Enter your desired number of clusters: ")
 
-proximity = input("Enter your desired proximity metric(defaulst is euclidean) : ")
+proximity = input("Enter your desired proximity metric(default is euclidean) : ")
 
 link = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
 
-components = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
+components = input("Enter desired number of principal components: ")
 
 def spatial_agglomerative(input, n_clusters = K, affinity = proximity, linkage = link):
   '''
