@@ -3,7 +3,10 @@ import pandas as pd
 import numpy as np
 from sklearn.cluster import DBSCAN
 
-def dbscanreal(x,eps1=0.5,min=5): # eps1 for epsilon , min for minimum samples, x is for data input
+def dbscanreal(x,eps1=0.5,min=5): 
+      # eps1 for epsilon , 
+      # min for minimum samples, 
+      # x is for data input , the input should be transformed .
       db = DBSCAN(eps=eps1,min_samples=min,metric='cosine').fit(x)  # cosine distance calculation
       core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
       core_samples_mask[db.core_sample_indices_] = True
@@ -18,5 +21,4 @@ def dbscanreal(x,eps1=0.5,min=5): # eps1 for epsilon , min for minimum samples, 
       print("Estimated number of clusters: %d" % n_clusters_)
       print(frame['Cluster'].value_counts())
       print("Estimated number of noise points: %d" % n_noise_)
-      #print("Silhouette Coefficient: %0.3f" % silhouette_score(x, labels))
       return frame,labels
