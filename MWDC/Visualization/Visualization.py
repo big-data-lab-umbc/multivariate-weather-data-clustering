@@ -9,20 +9,27 @@ import os
 
 
 
-def visualization(data_file,cluster_filename):  # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
+def visualization(data_file,cluster_filename):  
+    # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
+    # data_file = 'path/data.nc'
+    # cluster_filename = 'path/clusters'
+
     input_dir = './'
     fig_dir = './'
-    #data_file = '/content/drive/MyDrive/Multivariate Data Independent Study/New_ERA5_meteo_sfc_2021_daily.nc'
+    
     fcase = data_file
+
     ##Read time, lat and lon for visualization
     fin = Dataset(fcase, "r")
     time = np.squeeze(fin['time'][:])
     lat0 = np.squeeze(fin['latitude'][:])
     lon0 = np.squeeze(fin['longitude'][:])
 
+    #Select variables 
     varids=['sst','t2m','u10','v10','sshf','sp']
     ccoefs=[1,-1./3600,1,1,-1./3600,1e-2]
     panels=np.arange(421,428,dtype=int) #4 rows 2 columns depending on clusters (how much panels you want?)
+    
     #You can choose different colormaps
     cmap0='coolwarm'
 
@@ -42,6 +49,7 @@ def visualization(data_file,cluster_filename):  # data_file is the .nc file ,  c
                                 
                                 
         return days,id
+
     # plot the map of orignal data (mean value and standard deviation) for each cluster on the specified subpanel
     def plot_map(var, var_range,lon0,lat0,fig,panel,cmap0,colorbar,title,ifcontourf):
       ax=plt.subplot(panel)
@@ -73,7 +81,9 @@ def visualization(data_file,cluster_filename):  # data_file is the .nc file ,  c
 
             #cbar = fig.colorbar(p1)
       return [p1]
+    
     ##called by plot_map to plot the coastline on the map
+    
     def plotcoastline(color='k'):
         lon_c = []
         lat_c = []
