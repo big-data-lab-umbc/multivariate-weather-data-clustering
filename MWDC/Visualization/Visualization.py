@@ -139,7 +139,8 @@ def visualization(data_file,cluster_filename):
               plt.title('2std='+f'{np.nanmean(var_std_icluster):9.3f}',loc='right')
           ipanel += 1      
       #fig.savefig(varid+'_'+cluster_filename+'.jpg')
-  #def barplot(ivar,days):
+  
+    #def barplot(ivar,days):
     fig=plt.figure(ivar+2,figsize=[18,6])
     plt.bar(days,id+0.1,width=0.3)
     plt.tick_params(labelsize=12)
