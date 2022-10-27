@@ -22,6 +22,11 @@ def spatial_evaluation(input, formed_clusters):
         while the rest of the values represent the inter-spatial correlation between data points in different clusters.
      
   '''
+
+  input = null_fill(input)
+
+  trans_data1 = datatransformation(input)
+  trans_data = datanormalization(trans_data1)
   
   
   # Function to get center of dataset (compute the mean value of all centroids)
