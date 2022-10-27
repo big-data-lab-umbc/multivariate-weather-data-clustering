@@ -8,11 +8,10 @@ import matplotlib.colors as colors
 import os
 
 
-
 def visualization(data_file,cluster_filename):  
     # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
-    # data_file = 'path/data.nc'
-    # cluster_filename = 'path/clusters'
+    # Example data_file = 'path/data.nc'
+    # Example cluster_filename = 'path/clusters.csv'
 
     input_dir = './'
     fig_dir = './'
@@ -83,7 +82,7 @@ def visualization(data_file,cluster_filename):
       return [p1]
     
     ##called by plot_map to plot the coastline on the map
-    
+
     def plotcoastline(color='k'):
         lon_c = []
         lat_c = []
@@ -98,7 +97,7 @@ def visualization(data_file,cluster_filename):
 
     
     #cluster_filename='DBscan_SST_No_PCA'
-    cluster_link = cluster_filename+'.csv'
+    cluster_link = cluster_filename
     [days,id]=read_combined_cluster(cluster_link,'OK') 
     n_cluster = max(id)-min(id)+1
     print('total clusters: ',n_cluster)
