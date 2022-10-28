@@ -102,8 +102,6 @@ def visualization(data_file,cluster_filename):
     n_cluster = max(id)-min(id)+1
     print('total clusters: ',n_cluster)
 
-
-
     for ivar in range(len(varids)):
       fig=plt.figure(ivar+1,figsize=[19,22])  
       varid = varids[ivar]  
