@@ -8,11 +8,11 @@ import matplotlib.colors as colors
 import os
 
 
-def visualization(data_file,cluster_filename):  
+def visualization(data_file,cluster_filename,coast_file):  
     # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
-    # Example data_file = 'path/data.nc'
-    # Example cluster_filename = 'path/clusters.csv'
-
+    # Example data_file = 'path/data.nc'  It is the raw unprocessed data
+    # Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.
+    # coast_file = 'path/coast.txt' This file contains the data of how a coastline should look like in the result. 
     input_dir = './'
     fig_dir = './'
     
@@ -86,7 +86,7 @@ def visualization(data_file,cluster_filename):
     def plotcoastline(color='k'):
         lon_c = []
         lat_c = []
-        with open('./coast.txt') as f:
+        with open(coast_file) as f:
             for line in f:
                 data = line.split()
                 lon_c.append(float(data[0])-360)
