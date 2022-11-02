@@ -89,7 +89,7 @@ Parameters that this function will accept are as follows:
 | `make_Csv_cluster()`      | label,name                                                                 |
 
 ## Parameters that this function will accept are as follows:   
-   \* visualization()   
+    * visualization()   
     1. data_file is the .nc file.   
     Example data_file = 'path/data.nc'  It is the raw unprocessed data.   
     
@@ -98,7 +98,8 @@ Parameters that this function will accept are as follows:
     
     3. coast_file =  This file contains the data of how a coastline should look like in the result.     
     Example 'path/coast.txt'. 
-   \* make_Csv_cluster().   
+    
+    * make_Csv_cluster().   
     1.# label contains the clusterids.   
     2. # name is the file name that will generated eg:('test.csv').   
     
