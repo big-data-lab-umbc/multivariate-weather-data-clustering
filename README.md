@@ -89,15 +89,15 @@ Parameters that this function will accept are as follows:
 | `make_Csv_cluster()`      | label,name                                                                 |
 
 ## Parameters that this function will accept are as follows:   
-   \* visualization()  
-    1. data_file is the .nc file. 
-    Example data_file = 'path/data.nc'  It is the raw unprocessed data. 
-    cluster_filename is the csv file which contains clusterid and time_step.  
-    Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.  
-    4. coast_file =  This file contains the data of how a coastline should look like in the result.   
+   \* visualization()   
+    1. data_file is the .nc file.   
+    Example data_file = 'path/data.nc'  It is the raw unprocessed data.   
+    cluster_filename is the csv file which contains clusterid and time_step.    
+    Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.    
+    4. coast_file =  This file contains the data of how a coastline should look like in the result.     
     Example 'path/coast.txt'. 
-   \* make_Csv_cluster(). 
-    1.# label contains the clusterids. 
-    2. # name is the file name that will generated eg:('test.csv'). 
+   \* make_Csv_cluster().   
+    1.# label contains the clusterids.   
+    2. # name is the file name that will generated eg:('test.csv').   
     
     
