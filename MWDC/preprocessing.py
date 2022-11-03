@@ -42,7 +42,26 @@ def transformddaily(x):
 #Removing Null Values
   sst_data_trans1 = sst_data_trans.values.astype(float)
   sst_data_trans1=sst_data_trans.fillna(9999)
-  trans_concat = pd.concat([sst_data_trans1, t2m_data_trans, v10_data_trans, u10_data_trans, sp_data_trans, sshf_data_trans, slhf_data_trans ], axis=1)
+
+  t2m_data_trans1 = t2m_data_trans.values.astype(float)
+  t2m_data_trans1= t2m_data_trans.fillna(9999)
+  
+  v10_data_trans1 = v10_data_trans.values.astype(float)
+  v10_data_trans1=v10_data_trans.fillna(9999)
+  
+  u10_data_trans1 = u10_data_trans.values.astype(float)
+  u10_data_trans1=u10_data_trans.fillna(9999)
+
+  sp_data_trans = sp_data_trans.values.astype(float)
+  sp_data_trans1= sp_data_trans.fillna(9999)
+
+  sshf_data_trans1 = sshf_data_trans.values.astype(float)
+  sshf_data_trans1= sshf_data_trans.fillna(9999)
+
+  slhf_data_trans1 = slhf_data_trans.values.astype(float)
+  slhf_data_trans1= slhf_data_trans.fillna(9999)
+
+  trans_concat = pd.concat([sst_data_trans1, t2m_data_trans1, v10_data_trans1, u10_data_trans1, sp_data_trans1, sshf_data_trans1, slhf_data_trans1 ], axis=1)
   scaler = StandardScaler()
   trans_concat_scaled = scaler.fit_transform(trans_concat)
   return trans_concat_scaled
