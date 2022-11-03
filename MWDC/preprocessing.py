@@ -48,6 +48,26 @@ def transformddaily(x):
   return trans_concat_scaled
 
 
+#### Transformation function for Daily Data ONLY SST.
+  def ssttransform(x):
+    import dask.dataframe
+# Transforming Data
+  dask_df = x.to_dask_dataframe(dim_order=None, set_index=False)
+  dd = dask_df.compute()
+  sst_data_trans = pd.DataFrame()
+
+  for i in range(0,dd.shape[0]):
+    b=('sst'+'('+str(dd.latitude[i])+','+str(dd.longitude[i])+')')
+    sst_data_trans.loc[dd.time[i], b] = dd.sst[i]
+#Removing Null Values
+  sst_data_trans1 = sst_data_trans.values.astype(float)
+  sst_data_trans1=sst_data_trans.fillna(9999)
+  trans_concat = pd.concat([sst_data_trans1 ], axis=1)
+  scaler = StandardScaler()
+  trans_concat_scaled = scaler.fit_transform(trans_concat)
+  return trans_concat_scaled
+
+
 #### Transformation function for Mock Data.
 
 def transformdmock(x):
