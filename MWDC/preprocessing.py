@@ -49,8 +49,8 @@ def transformddaily(x):
 
 
 #### Transformation function for Daily Data ONLY SST.
-  def ssttransform(x):
-    import dask.dataframe
+def ssttransform(x):
+  import dask.dataframe
 # Transforming Data
   dask_df = x.to_dask_dataframe(dim_order=None, set_index=False)
   dd = dask_df.compute()
