@@ -151,3 +151,4 @@ def visualization(data_file,cluster_filename,coast_file):
 
 
     return plt.show()
+
