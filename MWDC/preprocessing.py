@@ -93,21 +93,22 @@ def transformdmock(x):
 
 
 #### Variable for Quater Map
+# commented by Rohan works same as ssttransform()
 
-def transformqm(x):
-  import dask.dataframe
+#def transformqm(x):
+#  import dask.dataframe
 # Transforming Data
-  dask_df = x.to_dask_dataframe(dim_order=None, set_index=False)
-  dd = dask_df.compute()
-  t2m_data_trans = pd.DataFrame()
-  for i in range(0,dd.shape[0]):
-    c=('t2m'+'('+str(dd.latitude[i])+','+str(dd.longitude[i])+')')
-    t2m_data_trans.loc[dd.time[i], c] = dd.t2m[i]
+#  dask_df = x.to_dask_dataframe(dim_order=None, set_index=False)
+#  dd = dask_df.compute()
+#  t2m_data_trans = pd.DataFrame()
+#  for i in range(0,dd.shape[0]):
+#    c=('t2m'+'('+str(dd.latitude[i])+','+str(dd.longitude[i])+')')
+#    t2m_data_trans.loc[dd.time[i], c] = dd.t2m[i]
 #Removing Null Values
-  trans_concat = pd.concat([t2m_data_trans ], axis=1)
-  scaler = StandardScaler()
-  trans_concat_scaled = scaler.fit_transform(trans_concat)
-  return trans_concat_scaled
+#  trans_concat = pd.concat([t2m_data_trans ], axis=1)
+#  scaler = StandardScaler()
+#  trans_concat_scaled = scaler.fit_transform(trans_concat)
+#  return trans_concat_scaled
 
 
 ######### Data Transformation ######

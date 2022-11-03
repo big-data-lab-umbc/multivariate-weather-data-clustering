@@ -353,19 +353,3 @@ def Spat_Corr(input,formed_clusters,trans_data,normalize=False):
   return mat
 
 ########################### End of Spatial Correlation Coefficient ###########################
-
-########################### Silhouette Coefficient ###########################
-
-def silhouette_score1(X, labels, *, metric="euclidean", sample_size=None, random_state=None, **kwds):
-    X1=transformd(X)   
-    if sample_size is not None:
-        X1, labels = check_X_y(X1, labels, accept_sparse=["csc", "csr"])
-        random_state = check_random_state(random_state)
-        indices = random_state.permutation(X1.shape[0])[:sample_size]
-        if metric == "precomputed":
-            X1, labels = X1[indices].T[indices].T, labels[indices]
-        else:
-            X1, labels = X1[indices], labels[indices]
-    return np.mean(silhouette_samples(X1, labels, metric=metric, **kwds))
-
-########################### End of Silhouette Coefficient ###########################
