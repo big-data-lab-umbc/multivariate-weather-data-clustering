@@ -61,7 +61,7 @@ def ssttransform(x):
     sst_data_trans.loc[dd.time[i], b] = dd.sst[i]
 #Removing Null Values
   sst_data_trans1 = sst_data_trans.values.astype(float)
-  sst_data_trans1=sst_data_trans.fillna(9999)
+  sst_data_trans1=sst_data_trans.fillna(sst_data_trans1.mode().iloc[0]) #fill missing values for each column (using its own most frequent value)
   trans_concat = pd.concat([sst_data_trans1 ], axis=1)
   scaler = StandardScaler()
   trans_concat_scaled = scaler.fit_transform(trans_concat)
