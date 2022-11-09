@@ -31,7 +31,7 @@ proximity = input("Enter your desired proximity metric(default is euclidean) : "
 
 link = input("Enter desired linkage criteria(from single, average, complete, ward), default is average: ")
 
-components = input("Enter desired number of principal components: ")
+components = int(input("Enter desired number of principal components: "))
 
 replace = input("Would you like to replace values where there is land to null values\n")
 
@@ -120,6 +120,3 @@ def spatial_agglomerative(input):
   plt.show()
   
   return df1,labels
-
-
-# spatial_agglomerative(input, formed_clusters, n_clusters = K, affinity = proximity, linkage = link)
