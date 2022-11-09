@@ -59,10 +59,11 @@ def spatial_agglomerative(input):
  
 
   if replace == "yes":
-    data = null_fill(input)
+
+    input = null_fill(input)
 
     #calling function that transforms our data
-    trans_data = datatransformation(data)
+    trans_data = datatransformation(input)
 
     #Normalize data
     norm_data = datanormalization(trans_data)
@@ -108,7 +109,7 @@ def spatial_agglomerative(input):
   # creating the dendrogram
   dendrogram = sch.dendrogram(sch.linkage(norm_data, method  = "ward"))
 
-  plt.axhline(y = 90, color='orange', linestyle ="--")
+  plt.axhline(y = 85, color='orange', linestyle ="--")
 
   # var = list(input.variables)
   var = list(data.variables)
