@@ -8,11 +8,12 @@ import matplotlib.colors as colors
 import os
 
 
-def visualization(data_file,cluster_filename,coast_file):  
+def visualization(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10','v10','sshf','sp']):  
     # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
     # Example data_file = 'path/data.nc'  It is the raw unprocessed data
     # Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.
     # coast_file = 'path/coast.txt' This file contains the data of how a coastline should look like in the result. 
+    # varids contains all the variables needed to show while visualization.
     input_dir = './'
     fig_dir = './'
     
@@ -25,7 +26,7 @@ def visualization(data_file,cluster_filename,coast_file):
     lon0 = np.squeeze(fin['longitude'][:])
 
     #Select variables 
-    varids=['sst','t2m','u10','v10','sshf','sp']
+    #varids=['sst','t2m','u10','v10','sshf','sp']
     ccoefs=[1,-1./3600,1,1,-1./3600,1e-2]
     panels=np.arange(421,428,dtype=int) #4 rows 2 columns depending on clusters (how much panels you want?)
     
