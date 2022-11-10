@@ -12,12 +12,12 @@ with open("requirements.txt") as f:
 
 setup(
     name = "MWDC",
-    version = "1.0.0",
+    version = "1.1.0",
     author = "Mostafa Cham",
     author_email = "mostafa.cham97@gmail.com",
     url = "https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git",
     install_requires = list(install_requires),
-    packages = find_packages(exclude=("example*" , "archive*", "Benchmark")),
+    packages = find_packages(exclude=("example*" , "archive*", "Benchmark*", "Deep_Learning_Methods*")),
     long_description=long_description,
     
 )

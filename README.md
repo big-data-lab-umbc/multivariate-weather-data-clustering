@@ -17,12 +17,15 @@ Note: If you are using macOS, you should use ` python3 setup.py install` instead
 To use the functions you just need to import them from MWDC. Modules could be imported either seperately or all together.
 
 ```python
-from MWDC import *
+from MWDC import * as mwdc
 
 ## or ##
 
-from MWDC import transformation
-from MWDC import evaluation
+from MWDC import preprocessing
+from MWDC import cluster_evaluations
+from MWDC.Visualization.make_Csv_cluster import make_Csv_cluster
+from MWDC.Visualization.Visualization import visualization
+
 .
 .
 .
@@ -62,16 +65,18 @@ pairs of both dimensions "latitude" and "longitude" will become the columns for 
 | `Kmeans(n_cluster).evaluate(z, PCA=(boolian), pass_trans_data=(boolian))`      | \*\*        |
 
 \* This function fits the K-means model to the data that is passed to it.  
- Parameters that this function will accept are as follows:  
- 1. xarray_data = string of the name of the original xarray file  
- 2. PCA (bool) = whether or not PCA has to be applied. Default value is True.  
- 3. pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
+ Parameters that this function will accept are as follows:
+
+1.  xarray_data = string of the name of the original xarray file
+2.  PCA (bool) = whether or not PCA has to be applied. Default value is True.
+3.  pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
 
 \*\* This function evaluates and assigns data points to clusters.
-Parameters that this function will accept are as follows:  
- 1. z = string of the name of the original xarray file.  
- 2. PCA (bool) = whether or not PCA has to be applied. Default value is True.  
- 3. pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
+Parameters that this function will accept are as follows:
+
+1.  z = string of the name of the original xarray file.
+2.  PCA (bool) = whether or not PCA has to be applied. Default value is True.
+3.  pass_trans_data (bool) = whether saved data has to be passed. If False, data will be transformed instantly. Default value is True.
 
 #### - evaluation
 
@@ -83,24 +88,23 @@ Parameters that this function will accept are as follows:
 
 #### - visualization
 
-| Functions                 | Params                                                                     |
-| :------------------------ | :------------------------------------------------------------------------- |
-| `visualization()`         | data_file,cluster_filename,coast_file                                      |
-| `make_Csv_cluster()`      | label,name                                                                 |
+| Functions            | Params                                |
+| :------------------- | :------------------------------------ |
+| `visualization()`    | data_file,cluster_filename,coast_file |
+| `make_Csv_cluster()` | label,name                            |
 
-## Parameters that this function will accept are as follows:   
-    * visualization()   
-    1. data_file is the .nc file.   
-    Example data_file = 'path/data.nc'  It is the raw unprocessed data.   
-    
-    2. cluster_filename is the csv file which contains clusterid and time_step.    
-    Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.    
-    
-    3. coast_file =  This file contains the data of how a coastline should look like in the result.     
-    Example 'path/coast.txt'. 
-    
-    * make_Csv_cluster().   
-    1.# label contains the clusterids.   
-    2. # name is the file name that will generated eg:('test.csv').   
-    
-    
+\* Parameters that `visualization()` will accept are as follows:
+
+1.  data_file is the .nc file.  
+    \- Example data_file = 'path/data.nc' It is the raw unprocessed data.
+2.  cluster_filename is the csv file which contains clusterid and time_step.  
+    \- Example cluster_filename = 'path/clusters.csv' # This file contains what cluster belongs to what date.
+3.  coast_file = This file contains the data of how a coastline should look like in the result.  
+    \- Example 'path/coast.txt'.
+
+####
+
+\* Parameters that `make_Csv_cluster()` will accept are as follows:
+
+1.  label contains the clusterids.
+2.  Name is the file name that will generated eg:('test.csv').
