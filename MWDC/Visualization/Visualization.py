@@ -14,6 +14,8 @@ def visualization(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10
     # Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.
     # coast_file = 'path/coast.txt' This file contains the data of how a coastline should look like in the result. 
     # varids contains all the variables needed to show while visualization.
+    # By default vairids will show all variables but user can manually add his own variables.
+    
     input_dir = './'
     fig_dir = './'
     
