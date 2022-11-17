@@ -631,25 +631,6 @@ def spatial_evaluation(input, formed_clusters):
 
     return mat
 
-
-
-
-  def silhouette_score1(input, formed_clusters, *, metric="euclidean", sample_size=None, random_state=None, **kwds):
-    # X0=datatransformation(input)
-    # X1 = datanormalization(X0)
-
-    X1 = trans_data
-
-    if sample_size is not None:
-        X1, formed_clusters = check_X_y(X1, formed_clusters, accept_sparse=["csc", "csr"])
-        random_state = check_random_state(random_state)
-        indices = random_state.permutation(X1.shape[0])[:sample_size]
-        if metric == "precomputed":
-            X1, formed_clusters = X1[indices].T[indices].T, formed_clusters[indices]
-        else:
-            X1, formed_clusters = X1[indices], formed_clusters[indices]
-    return np.mean(silhouette_samples(X1, formed_clusters, metric=metric, **kwds))
-
   return RMSE(input,formed_clusters), sp_corr(input,formed_clusters), calinski_harabasz(input,formed_clusters), davies_b(input,formed_clusters), silhouette_score1(input, formed_clusters)
 
 spatial_evaluation(data, classification)
