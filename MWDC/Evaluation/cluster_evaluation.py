@@ -633,5 +633,4 @@ def spatial_evaluation(input, formed_clusters):
 
   return RMSE(input,formed_clusters), sp_corr(input,formed_clusters), calinski_harabasz(input,formed_clusters), davies_b(input,formed_clusters), silhouette_score1(input, formed_clusters)
 
-spatial_evaluation(data, classification)
 
