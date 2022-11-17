@@ -22,3 +22,8 @@ def dbscanreal(x,eps1=0.5,min=5):
       print(frame['Cluster'].value_counts())
       print("Estimated number of noise points: %d" % n_noise_)
       return frame,labels
+
+def noiserem(frame1,label1):
+  frame1.drop(frame1.index[(frame1["Cluster"] == -1)],axis=0,inplace=True)
+  label1 = label1[label1 != -1]
+  return frame1,label1
