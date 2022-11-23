@@ -163,7 +163,7 @@ def st_rmse(input, formed_clusters):
     avg_cluster = {}
 
     # if normalize == False:
-    input = handle_missing_values(input)
+    #input = handle_missing_values(input)
     Clusters = n_nor_get_clusters(input,formed_clusters)
     mat = pd.DataFrame(columns=range(len(Clusters)),index=range(len(Clusters)))
     for i in range(len(Clusters)):
