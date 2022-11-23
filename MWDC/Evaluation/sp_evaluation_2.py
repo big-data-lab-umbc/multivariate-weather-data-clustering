@@ -680,13 +680,13 @@ def silhouette_score1(input, formed_clusters, *, metric="euclidean", sample_size
 
 #return silhouette_score1(input, formed_clusters)
 
-st_rmse(data, classification)
+#st_rmse(data, classification)
 
-st_spat_corr(data, classification)
+#st_spat_corr(data, classification)
 
-st_davies(data, classification)
+#st_davies(data, classification)
 
-silhouette_score1(data, classification)
+#silhouette_score1(data, classification)
 
 
 
