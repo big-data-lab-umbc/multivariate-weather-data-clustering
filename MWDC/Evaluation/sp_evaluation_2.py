@@ -49,7 +49,7 @@ def data_centroid(input,formed_clusters): #classification
   return Center
 
 # Function that creates a dictionary that holds the values of dates in each cluster
-def get_datewise_clusters(formed_clusters): # classification
+def get_datewise_clusters(trans_data, formed_clusters): # classification
   Dates_Cluster = {}
   for i in set(formed_clusters): # classification
     Dates_Cluster['Dates_Cluster'+str(i)] = trans_data.index[trans_data.Cluster == i].to_list()
@@ -60,7 +60,7 @@ def get_datewise_clusters(formed_clusters): # classification
 def n_nor_get_clusters(input,formed_clusters): # classification
   com_arr = []
   Clusters = {}
-  Dates_Cluster = get_datewise_clusters(formed_clusters)
+  Dates_Cluster = get_datewise_clusters(input, formed_clusters)
   for i in set(formed_clusters):
     for j in Dates_Cluster['Dates_Cluster'+str(i)]:
       arr = np.array(input.isel(time=j).to_array()) # input is data
