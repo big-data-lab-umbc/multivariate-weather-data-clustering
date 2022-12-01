@@ -13,8 +13,8 @@ import matplotlib.style as style
 
 #temp
 from sklearn.cluster import KMeans
-from clustering.KMediods.kmediods import *
-from clustering.dbscan.dbscan import dbscanreal
+from MWDC.clustering.KMediods.kmediods import *
+from MWDC.clustering.dbscan.dbscan import dbscanreal
 
 from MWDC.preprocessing import datatransformation, datanormalization
 
