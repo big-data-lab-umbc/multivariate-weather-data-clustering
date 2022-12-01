@@ -477,6 +477,10 @@ def ST_CORRELATION(input,formed_clusters,normalize=True):
 ###########################  Silhouette Computation  #######################################
 
 def st_silhouette_score(X,Range,menu):
+  # X is the dataset
+  # Range is the range of clusters
+  # menu is the select the type of algorithm needed to run.
+  
   range_n_clusters  = [*range(2,Range, 1)]
   #range_n_clusters = [2, 3, 4, 5, 6]
   silhouette_avg_n_clusters = []
