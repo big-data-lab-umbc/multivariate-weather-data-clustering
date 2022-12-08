@@ -467,20 +467,15 @@ def ST_CORRELATION(input,formed_clusters,normalize=True):
 
   return sp_corr(input,formed_clusters,True)
 
-
-
 #################################################################################################
 #################################################################################################
-
-
-
 ###########################  Silhouette Computation  #######################################
 
-def st_silhouette_score(X,Range,menu):
+def silhouette_score_test(X,Range,menu):
   # X is the dataset
   # Range is the range of clusters
   # menu is the select the type of algorithm needed to run.
-  
+
   range_n_clusters  = [*range(2,Range, 1)]
   #range_n_clusters = [2, 3, 4, 5, 6]
   silhouette_avg_n_clusters = []
@@ -554,12 +549,81 @@ def st_silhouette_score(X,Range,menu):
   plt.show()
 
 
-  style.use("fivethirtyeight")
-  plt.plot(range_n_clusters, silhouette_avg_n_clusters)
-  plt.xlabel("Number of Clusters (k)")
-  plt.ylabel("silhouette score")
-  plt.show()
-  return plt.show()
+def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidean", sample_size=None, random_state=None, **kwds):
+    
+    """Compute the mean Silhouette Coefficient of all samples.
+    The Silhouette Coefficient is calculated using the mean intra-cluster
+    distance (``a``) and the mean nearest-cluster distance (``b``) for each
+    sample.  The Silhouette Coefficient for a sample is ``(b - a) / max(a,
+    b)``.  To clarify, ``b`` is the distance between a sample and the nearest
+    cluster that the sample is not a part of.
+    Note that Silhouette Coefficient is only defined if number of labels
+    is ``2 <= n_labels <= n_samples - 1``.
+    This function returns the mean Silhouette Coefficient over all samples.
+    To obtain the values for each sample, use :func:`silhouette_samples`.
+    The best value is 1 and the worst value is -1. Values near 0 indicate
+    overlapping clusters. Negative values generally indicate that a sample has
+    been assigned to the wrong cluster, as a different cluster is more similar.
+    Read more in the :ref:`User Guide <silhouette_coefficient>`.
+    Parameters
+    ----------
+    X : array-like of shape (n_samples_a, n_samples_a) if metric == \
+            "precomputed" or (n_samples_a, n_features) otherwise
+        An array of pairwise distances between samples, or a feature array.
+    labels : array-like of shape (n_samples,)
+        Predicted labels for each sample.
+
+    transformation: If you want to push the data through data transformation 
+                  transformation=True. 
+                  Default ='False'
+
+    metric : str or callable, default='euclidean'
+        The metric to use when calculating distance between instances in a
+        feature array. If metric is a string, it must be one of the options
+        allowed by :func:`metrics.pairwise.pairwise_distances
+        <sklearn.metrics.pairwise.pairwise_distances>`. If ``X`` is
+        the distance array itself, use ``metric="precomputed"``.
+    sample_size : int, default=None
+        The size of the sample to use when computing the Silhouette Coefficient
+        on a random subset of the data.
+        If ``sample_size is None``, no sampling is used.
+    random_state : int, RandomState instance or None, default=None
+        Determines random number generation for selecting a subset of samples.
+        Used when ``sample_size is not None``.
+        Pass an int for reproducible results across multiple function calls.
+        See :term:`Glossary <random_state>`.
+    **kwds : optional keyword parameters
+        Any further parameters are passed directly to the distance function.
+        If using a scipy.spatial.distance metric, the parameters are still
+        metric dependent. See the scipy docs for usage examples.
+    Returns
+    -------
+    silhouette : float
+        Mean Silhouette Coefficient for all samples.
+    References
+    ----------
+    .. [1] `Peter J. Rousseeuw (1987). "Silhouettes: a Graphical Aid to the
+       Interpretation and Validation of Cluster Analysis". Computational
+       and Applied Mathematics 20: 53-65.
+       <https://www.sciencedirect.com/science/article/pii/0377042787901257>`_
+    .. [2] `Wikipedia entry on the Silhouette Coefficient
+           <https://en.wikipedia.org/wiki/Silhouette_(clustering)>`_
+    """
+    if transformation==True:
+       trans_data = datatransformation(X)
+       trans_data = datanormalization(trans_data)
+    else:  
+      if sample_size is not None:
+          X, labels = check_X_y(X, labels, accept_sparse=["csc", "csr"])
+          random_state = check_random_state(random_state)
+          indices = random_state.permutation(X.shape[0])[:sample_size]
+          if metric == "precomputed":
+              X, labels = X[indices].T[indices].T, labels[indices]
+          else:
+              X, labels = X[indices], labels[indices]
+    return np.mean(silhouette_samples(X, labels, metric=metric, **kwds))
+
+
 
     
 
@@ -570,5 +634,5 @@ def st_silhouette_score(X,Range,menu):
 
 # ST_CORRELATION(data,formed_clusters,True)
 # ST_RMSE(data,formed_clusters,True)
-# st_silhouette_score(data,Range of clusters,algorithm)
+# compute_silhouette_score(X, labels,transformation=False, *, metric="euclidean", sample_size=None, random_state=None, **kwds)
 
