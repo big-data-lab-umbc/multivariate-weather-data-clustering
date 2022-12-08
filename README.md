@@ -1,11 +1,26 @@
 # multivariate-weather-data-clustering
 
+## Download
+
+There are three ways to Download and Manage the MWDC package:
+
+1 - Use [GitHub Desktop](https://desktop.github.com/) (Recomended)
+
+2 - Use command line:
+
+```bash
+ git clone https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
+```
+
+\*Because the repository is private the command line method is not Recomended.
+
+3 - Download the `.zip` file and use it.
+
 ## Installation
 
 To install the package you need to create an environment using [pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) or [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). After that just clone this repository and install the ` setup.py` file inside it.
 
 ```bash
- git clone https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
  cd multivariate-weather-data-clustering
  python setup.py install
 ```
