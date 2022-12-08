@@ -567,9 +567,9 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
     Read more in the :ref:`User Guide <silhouette_coefficient>`.
     Parameters
     ----------
-    X : array-like of shape (n_samples_a, n_samples_a) if metric == \
-            "precomputed" or (n_samples_a, n_features) otherwise
-        An array of pairwise distances between samples, or a feature array.
+    X : Can be transformed data or it can be .nc file, as can be transformed within this function.
+        When data constains .nc file perform transformation=True.
+
     labels : array-like of shape (n_samples,)
         Predicted labels for each sample.
 
@@ -623,11 +623,6 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
               X, labels = X[indices], labels[indices]
     return np.mean(silhouette_samples(X, labels, metric=metric, **kwds))
 
-
-
-    
-
-#return silhouette_score1(input, formed_clusters)
 
 
 # To call the functions, run the following:
