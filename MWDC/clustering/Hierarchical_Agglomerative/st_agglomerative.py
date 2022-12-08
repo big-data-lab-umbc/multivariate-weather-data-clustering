@@ -7,141 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1qlHSso4uJkGT4D6t4WOIv_mbakEyl0I_
 """
 
-from google.colab import drive
-drive.mount('/content/drive')
-
-!pip install "dask[dataframe]"
-
-import os
-import sys
-import pandas as pd
-import numpy as np
-import xarray as xr
-import netCDF4 as nc
-import matplotlib.pyplot as plt
-#sys.path.insert(0, '/global/homes/x/xzheng/python_lib/')
-from netCDF4 import Dataset
-import matplotlib as mpl 
-import matplotlib.colors as colors
-# #os.environ['PROJ_LIB'] = r'/global/cfs/cdirs/e3sm/xzheng/conda/pkgs/proj-7.2.0-h277dcde_2/share/'
-# from mpl_toolkits.basemap import Basemap
-# import cartopy.crs as ccrs
-# from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
-from sklearn import preprocessing
-from statistics import mean
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-from scipy.cluster.hierarchy import dendrogram, linkage
-import scipy.cluster.hierarchy as sch
-from sklearn.cluster import AgglomerativeClustering
-from yellowbrick.cluster import KElbowVisualizer
-from sklearn.metrics import silhouette_samples, silhouette_score
-
-norm_data = pd.read_csv("/content/drive/MyDrive/Private/Image_Similarity/daily_trans_norm.csv")
-norm_data = norm_data.iloc[:,1:]
-norm_data
-
-def pca1(data,n): # data is data to be input , n is the number of components 
-  pca = PCA(n_components=n) 
-  pca.fit(data)
-
-  # Get pca scores
-  pca_scores = pca.transform(data)
-
-  # Convert pca_scores to a dataframe
-  scores_df = pd.DataFrame(pca_scores)
-
-  # Round to two decimals
-  scores_df = scores_df.round(2)
-
-  # Return scores
-  return scores_df
-
-norm_data = pca1(norm_data, 11)
-
-#path2 = ('/content/drive/MyDrive/Data/mock.nc')
-#path2 = ('/content/drive/MyDrive/Private/Image_Similarity/mock1.nc')
-#path2 = ('/content/drive/MyDrive/Data/mock_v2.nc')
-#path2 = ('/content/drive/MyDrive/Data/mock_v2.1.nc')
-#path2 = ('/content/drive/MyDrive/Data/mock_v3.nc')
-#path2 = ('/content/drive/MyDrive/Data/mock_v3.1.nc')
-#path2 = ('/content/drive/MyDrive/Data/mock_v4.nc')
-path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily_smalldomain.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_hourly.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_hourly_smalldomain.nc')
-data = xr.open_dataset(path2, decode_times=False) #To view the date as integers of 0, 1, 2,....
-#data = xr.open_dataset(path2)# decode_times=False) #To view the date as integers of 0, 1, 2,....
-#data5 = xr.open_dataset(path2) # To view time in datetime format
-data
-
-def null_fill(input):
-
-  dask_df = input.to_dask_dataframe(dim_order=None, set_index=False)
-  pd_df = dask_df.compute()
-  pd_df1 = pd_df.iloc[:, 3:]
-  df2 = pd_df1[pd_df1.isnull().any(axis=1)]
-  lst = list(df2.index.values)
-  df2.loc[:] = np.nan
-  dt = pd.concat([pd_df1, df2], axis=0)
-  dt3 = dt[~dt.index.duplicated(keep='last')]
-  dt4 = dt3[['sst', 'sp', 'u10', 'v10', 'sshf', 'slhf', 't2m']]
-  pd_df4 = pd_df.iloc[:, 0:5]
-  dff = pd_df4[['time', 'longitude', 'latitude', 'sst']]
-  df = pd.merge(dff, dt4, left_index=True, right_index=True).drop('sst_y', axis=1)
-  df.rename(columns={'sst_x':'sst'}, inplace=True)
-  df_rows = pd.DataFrame(df).set_index(["time", "longitude", "latitude"])
-  data = xr.Dataset.from_dataframe(df_rows)
-  df_rows = pd.DataFrame(df).set_index(["time", "longitude", "latitude"])
-  data = xr.Dataset.from_dataframe(df_rows)
-
-  return data
-
-def datatransformation(data):
-        dask_df = data.to_dask_dataframe(dim_order=None, set_index=False)
-        pd_df = dask_df.compute()
-
-        for i in pd_df.columns:
-          if pd_df[i].isna().sum() > 0:
-            pd_df[i].fillna(value=pd_df[i].mean(), inplace=True)
-        
-        #col = 'time','lat','lon'
-        col = 'time','latitude','longitude'
-        fin_df = pd_df.loc[:, ~pd_df.columns.isin(col)]
-
-        trans_data = pd.DataFrame()
-        for j in fin_df.columns:
-          for i in range(0,pd_df.shape[0]):
-              c=(j + '(' + str(pd_df.latitude[i])+','+str(pd_df.longitude[i]) + ')')
-              trans_data.loc[pd_df.time[i], c] = pd_df[j][i]
-
-        return trans_data
-
-def datanormalization(input):
-  x = input.values #returns a numpy array
-  min_max_scaler = preprocessing.MinMaxScaler()
-  x_scaled = min_max_scaler.fit_transform(x)
-  trans_data = pd.DataFrame(x_scaled, columns=input.columns, index=input.index)
-        
-  return trans_data
-
-def pca1(data,n): # data is data to be input , n is the number of components 
-  pca = PCA(n_components=n) 
-  pca.fit(data)
-
-  # Get pca scores
-  pca_scores = pca.transform(data)
-
-  # Convert pca_scores to a dataframe
-  scores_df = pd.DataFrame(pca_scores)
-
-  # Round to two decimals
-  scores_df = scores_df.round(2)
-
-  # Return scores
-  return scores_df
-
 # !pip install "dask[dataframe]" Needed for data transformation
 
 import pandas as pd
@@ -176,9 +41,10 @@ def st_agglomerative(input, k, proximity, link):
                          to a cluster label
 
         A dataframe showing each cluster label and the correcponding cluster size.
+
+        A dendrogram showing the steps in clustering
      
   '''
-
 
 
   #calling function that transforms our data
@@ -219,7 +85,3 @@ def st_agglomerative(input, k, proximity, link):
   plt.show()
   
   return df1,labels
-
-# spatial_agglomerative(norm_data, n_clusters = K, affinity = proximity, linkage = link)
-# spatial_agglomerative(norm_data, n_clusters = 7, affinity = euclidean, linkage = average)
-spatial_agglomerative(data)
