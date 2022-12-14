@@ -11,8 +11,8 @@ with open("requirements.txt") as f:
             install_requires.add(dep)
 
 setup(
-    name="MWDC",
-    version="1.2.0",
+    name="mwdc",
+    version="1.3.0",
     author="Mostafa Cham",
     author_email="mostafa.cham97@gmail.com",
     url="https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git",
