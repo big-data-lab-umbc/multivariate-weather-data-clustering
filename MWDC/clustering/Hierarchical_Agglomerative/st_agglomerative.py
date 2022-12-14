@@ -130,5 +130,3 @@ def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
   return df1,labels
 
   #Example parameters to run code: st_agglomerative(data, 7, 7, p=7, affinity="euclidean", linkage="average")
-
-st_agglomerative(data, 7, 7, p=7, affinity="euclidean", linkage="average")
