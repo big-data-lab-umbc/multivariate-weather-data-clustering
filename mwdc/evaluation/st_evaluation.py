@@ -19,8 +19,8 @@ from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 import matplotlib.style as style
 
-from multivariateweatherdataclusteringmain.MWDC.preprocessing import *
-from multivariateweatherdataclusteringmain.MWDC.clustering import *
+from MWDC.preprocessing import datatransformation, datanormalization
+from MWDC.clustering import *
 
 
 
