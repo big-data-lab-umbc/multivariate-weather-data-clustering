@@ -567,6 +567,14 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
     if transformation==True:
        trans_data = datatransformation(X)
        trans_data = datanormalization(trans_data)
+       if sample_size is not None:
+          trans_data, labels = check_X_y(trans_data, labels, accept_sparse=["csc", "csr"])
+          random_state = check_random_state(random_state)
+          indices = random_state.permutation(trans_data.shape[0])[:sample_size]
+          if metric == "precomputed":
+              trans_data, labels = trans_data[indices].T[indices].T, labels[indices]
+          else:
+              trans_data, labels = trans_data[indices], labels[indices]
     else:  
       if sample_size is not None:
           X, labels = check_X_y(X, labels, accept_sparse=["csc", "csr"])
