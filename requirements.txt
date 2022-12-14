@@ -1,2 +1,11 @@
 importlib-metadata==4.13.0
 scikit-learn-extra
+netCDF4
+h5py
+pandas
+xarray
+netCDF4
+cftime
+seaborn
+math
+"dask[dataframe]"
