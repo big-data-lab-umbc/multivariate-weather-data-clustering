@@ -7,5 +7,4 @@ xarray
 netCDF4
 cftime
 seaborn
-math
-"dask[dataframe]"
+dask[dataframe]
