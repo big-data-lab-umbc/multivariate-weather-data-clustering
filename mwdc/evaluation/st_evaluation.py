@@ -19,11 +19,8 @@ from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 import matplotlib.style as style
 
-from MWDC.preprocessing import datatransformation, datanormalization
-from MWDC.clustering import *
-
-
-
+from mwdc.preprocessing import datatransformation, datanormalization
+from mwdc.clustering import *
 
 
 def st_rmse(input,formed_clusters):
