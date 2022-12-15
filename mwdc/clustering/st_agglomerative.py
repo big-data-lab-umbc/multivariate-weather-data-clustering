@@ -19,12 +19,14 @@ import scipy.cluster.hierarchy as sch
 from sklearn.cluster import AgglomerativeClustering
 from sklearn import cluster
 
+from mwdc.preprocessing import *
+
 # from sklearn.metrics import adjusted_rand_score
 # from sklearn.metrics import normalized_mutual_info_score
 # from sklearn.metrics import *
 
 
-from multivariateweatherdataclusteringmain.MWDC.preprocessing import *
+
 
 
 def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
