@@ -111,15 +111,11 @@ def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
       print(df1['Cluster'].value_counts())
 
     # graph size
-      plt.figure(1, figsize = (24 ,12))
+      plt.figure(1, figsize = (18 ,12))
       
       # plot the top four levels of the dendrogram
       #No more than p levels of the dendrogram tree are displayed. A “level” includes all nodes with p merges from the last merge.
-      plot_dendrogram(model, truncate_mode='level',p = 7, get_leaves=True, orientation='top', labels=None) 
-
-    #plt.axhline(y = 85, color='orange', linestyle ="--")
-
-      var = list(data.variables)
+      plot_dendrogram(model, truncate_mode='level',p = 7, get_leaves=True, orientation='top', labels=None)
 
       plt.title('Hierarchical Clustering Dendrogram: ' + alg_name + ", " + metric)
       plt.xlabel('Sequence of Merges along the Time component - in Days')
