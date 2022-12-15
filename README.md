@@ -28,7 +28,15 @@ There are three ways to Download and Manage the MWDC package:
 
 #### 1. On PC
 
-To install the package you need to create an environment using [pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) or [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). After that just clone this repository and install the ` setup.py` file inside it.
+To install the package you need to create an environment using [pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) or [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). 
+
+##### Conda environment setup
+```bash
+conda create -n mwdc pandas numpy xarray netCDF4 matplotlib scikit-learn scipy dask
+conda activate mwdc
+```
+
+After that just clone this repository and install the ` setup.py` file inside it.
 
 ```bash
  cd multivariate-weather-data-clustering
