@@ -8,3 +8,4 @@ netCDF4
 cftime
 seaborn
 dask[dataframe]
+sklearn_extra
