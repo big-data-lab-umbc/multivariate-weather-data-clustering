@@ -19,7 +19,7 @@ from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 import matplotlib.style as style
 
-from mwdc.preprocessing import datatransformation, datanormalization
+from mwdc.preprocessing.preprocessing import datatransformation, datanormalization
 from mwdc.clustering import *
 
 
