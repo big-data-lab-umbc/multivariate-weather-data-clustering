@@ -93,6 +93,12 @@ pairs of both dimensions "latitude" and "longitude" will become the columns for 
 | :------------------------------- | :-------------------------------------------------------------- |
 | `dbscanreal(x, eps1=0.5, min=5)` | eps1 for epsilon , min for minimum samples, x is for data input |
 
+#### - Agglomerative Clustering
+
+| Functions                        | Description                                                     |
+| :------------------------------- | :-------------------------------------------------------------- |
+| `st_agglomerative(data, n, K, p=7, affinity, linkage)| n=PCA components, K=number of clusters, p=truncate_mode.
+
 #### - Kmeans
 
 | Functions                                                                      | Description |
