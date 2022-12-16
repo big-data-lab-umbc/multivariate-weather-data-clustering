@@ -283,3 +283,39 @@ def pcacomponents(data):
   return plt.show()
 
   ######## End of PCAcomponents function #########
+  
+######## Data Transformation Function using NumPy Array ##########
+from sklearn import preprocessing
+from sklearn.preprocessing import MinMaxScaler
+
+def data_preprocessing(data_path, variables):
+  ''' The parameters accepted by this function are as follows:
+    1. "data_path" is the path of the netCDF4 dataset file. (data_path = '/content/drive/MyDrive/ERA5_meteo_sfc_2021_daily.nc')
+    2. "variables" is an array of the variable names of the netCDF4 dataset those we want to read. (variables = ['sst', 'sp']) 
+        If the "variables" array is empty the function will read the whole dataset. 
+    
+    Return value:
+       The function will return the normalized values of the selected variables as a 2D NumPy array of size (365 x ___)  
+
+       -- By Omar Faruque
+      '''
+  rdata_daily = xr.open_dataset(data_path)    
+  if(len(variables)==0):
+    rdata_daily_np_array = np.array(rdata_daily.to_array())
+  else:
+    rdata_daily_np_array = np.array(rdata_daily[variables].to_array())
+  rdata_daily_np_array_T = rdata_daily_np_array.transpose(1,0,2,3)   # transform the dailt data from (7, 365, 41, 41) to (365, 7, 41, 41)
+  overall_mean = np.nanmean(rdata_daily_np_array_T[:, :, :, :])
+  for i in range(rdata_daily_np_array_T.shape[0]):
+    for j in range(rdata_daily_np_array_T.shape[1]):
+      for k in range(rdata_daily_np_array_T.shape[2]):
+        for l in range(rdata_daily_np_array_T.shape[3]):
+          if np.isnan(rdata_daily_np_array_T[i, j, k, l]):
+            rdata_daily_np_array_T[i, j, k, l] = overall_mean
+  rdata_daily_np_array_T_R = rdata_daily_np_array_T.reshape((rdata_daily_np_array_T.shape[0], -1))  # transform the dailt data from (365, 7, 41, 41) to (365, 11767)
+  min_max_scaler = preprocessing.MinMaxScaler() # calling the function
+  rdata_daily_np_array_T_R_nor = min_max_scaler.fit_transform(rdata_daily_np_array_T_R)   # now normalize the data, otherwise the loss will be very big 
+  rdata_daily_np_array_T_R_nor = np.float32(rdata_daily_np_array_T_R_nor)    # convert the data type to float32, otherwise the loass will be out-of-limit 
+  return rdata_daily_np_array_T_R_nor
+
+######## End of Data Transformation Function using NumPy Array ##########
