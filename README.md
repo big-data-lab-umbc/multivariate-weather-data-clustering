@@ -89,6 +89,7 @@ trans_data = preprocessing.datatransformation(data)
 | `null_fill()`          | Function to input NaN values across variables                                    |
 | `pca1()`               | data is data to be input , n is the number of components                         |
 | `pcacomponents()`      | Showing the proper number of components for pca by computing cumulative variance |
+| `data_preprocessing()` | Transforms the xArray input data into a 2D NumPy Array.                          |
 
 \*Note: This function is used to transform the xarray dataset into a pandas dataframe where the dimension "time" would become the index of the DataFrame and,
 pairs of both dimensions "latitude" and "longitude" will become the columns for each variable
