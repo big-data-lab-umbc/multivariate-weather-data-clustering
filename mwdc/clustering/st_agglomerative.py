@@ -14,23 +14,26 @@ import netCDF4 as nc
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn import preprocessing
 from scipy.cluster.hierarchy import linkage, fcluster, dendrogram
 import scipy.cluster.hierarchy as sch
 from sklearn.cluster import AgglomerativeClustering
 from sklearn import cluster
 
-from mwdc.preprocessing.preprocessing import datatransformation, datanormalization, pca1
+from mwdc.preprocessing.preprocessing import data_preprocessing, pca1
 
 # from sklearn.metrics import adjusted_rand_score
 # from sklearn.metrics import normalized_mutual_info_score
 # from sklearn.metrics import *
 
-def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
+def st_agglomerative(input_path, variables,n, K, affinity, linkage, p, transformation=True, **kwargs):
 
   '''
   input parameters:
 
-        input: 4-d spatio-temporal xarray
+        input_path1: path to your netCDF file
+
+        input_path2: path to your netCDF file
 
         k : interger, The number of our desired clusters
 
@@ -39,7 +42,12 @@ def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
         linkage: function, Linkage criteria
 
         n: Integer Number of principal components
+
         p: int, (optional) The p parameter for truncate_mode.
+
+        variables: List of netCDF variable you wish to use
+
+        transformation: Boolean that accepts only "True" or "False"
 
   Output:
          
@@ -52,15 +60,22 @@ def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
      
   '''
 
+  if transformation==True:
+    norm_data = data_preprocessing(input_path, variables)
+    norm_data = pca1(norm_data,n)
+
+  else:
+    
+    if transformation==False:
+      norm_data = pca1(input_path,n)
+
+
 
   #calling function that transforms our data
-  trans_data = datatransformation(input)
-
-  #Normalize data
-  norm_data = datanormalization(trans_data)
+    
 
   #High dimension reduction
-  norm_data = pca1(norm_data,n)
+  #norm_data = pca1(norm_data,n)
 
   def plot_dendrogram(model, **kwargs):
     # Create linkage matrix and then plot the dendrogram
@@ -124,4 +139,10 @@ def st_agglomerative(input,n, K, affinity, linkage, p, **kwargs):
 
   return df1,labels
 
-  #Example parameters to run code: st_agglomerative(data, 7, 7, p=7, affinity="euclidean", linkage="average")
+
+
+  # var = list(data.variables)
+  # var = var[3:]
+  # var
+  #Example parameters to run code: With raw data: st_agglomerative(path2,var, 7, 7, p=7, affinity="euclidean", linkage="average", transformation=True)
+  #                                With transformed data: st_agglomerative(trans_data,var, 7, 7, p=7, affinity="euclidean", linkage="average", transformation=False)
