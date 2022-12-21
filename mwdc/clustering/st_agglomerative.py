@@ -61,21 +61,20 @@ def st_agglomerative(input_path, variables,n, K, affinity, linkage, p, transform
   '''
 
   if transformation==True:
+
+    #calling function that transforms our data
     norm_data = data_preprocessing(input_path, variables)
+
+    #High dimension reduction
     norm_data = pca1(norm_data,n)
 
   else:
     
     if transformation==False:
+
+      #High dimension reduction
       norm_data = pca1(input_path,n)
 
-
-
-  #calling function that transforms our data
-    
-
-  #High dimension reduction
-  #norm_data = pca1(norm_data,n)
 
   def plot_dendrogram(model, **kwargs):
     # Create linkage matrix and then plot the dendrogram
