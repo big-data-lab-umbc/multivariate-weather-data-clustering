@@ -12,7 +12,7 @@ from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 import matplotlib.style as style
 
-from mwdc.preprocessing.preprocessing import datatransformation, datanormalization
+from mwdc.preprocessing.preprocessing import datatransformation, datanormalization , data_preprocessing
 from mwdc.clustering import *
 
 
@@ -555,8 +555,7 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
            <https://en.wikipedia.org/wiki/Silhouette_(clustering)>`_
     """
     if transformation==True:
-       trans_data = datatransformation(X)
-       trans_data = datanormalization(trans_data)
+       trans_data=data_preprocessing(X)
        if sample_size is not None:
           trans_data, labels = check_X_y(trans_data, labels, accept_sparse=["csc", "csr"])
           random_state = check_random_state(random_state)
