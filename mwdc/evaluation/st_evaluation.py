@@ -575,3 +575,92 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
           else:
               X, labels = X[indices], labels[indices]
     return np.mean(silhouette_samples(X, labels, metric=metric, **kwds))
+  
+  
+  
+  
+  
+############################RMSE Function using Numpy Array Data-Preprocessing#################################################
+
+###### (Only takes 10-15 Sec, result is same as old function)
+from mwdc.preprocessing.preprocessing import data_preprocessing
+
+def st_rmse_omar(data_path,formed_clusters):
+
+  '''
+  input: 
+        1. "data_path" is the path of the netCDF4 dataset file. (data_path = '/content/multivariate-weather-data-clustering/data/ERA5_meteo_sfc_2021_daily.nc')
+        2. "formed_clusters": 1-D array of cluster labels classifying each data point.
+  Output:
+         
+        An N X M matrix whose diagonal is a measure of intra-rmse between data points in a cluster
+        while the rest of the values represent the inter-rmse between data points in different clusters.
+        
+  '''
+
+  #trans_data = datatransformation(input)
+
+  #trans_data = datanormalization(trans_data)
+  processed_data = data_preprocessing(data_path, [ ])
+  trans_data = pd.DataFrame(processed_data)
+  trans_data['Cluster'] = formed_clusters
+
+  # Normalized
+  # Function that creates two dictionaries that hold all the clusters and cluster centers
+  def nor_get_clusters_and_centers(input,formed_clusters):
+    Clusters = {}
+    Cluster_Centers = {}
+    for i in set(formed_clusters):
+      Clusters['Cluster' + str(i)] = np.array(input[input.Cluster == i].drop(columns=['Cluster']))
+      Cluster_Centers['Cluster_Center' + str(i)] = np.mean(Clusters['Cluster' + str(i)],axis=0)
+    return Clusters,Cluster_Centers
+
+
+  # Normalized
+
+  def nor_intra_rmse(input,formed_clusters):
+    intra_rmse = []
+    sq_diff = []
+    Clusters,Cluster_Centers = nor_get_clusters_and_centers(input,formed_clusters)
+    for i in range(len(Clusters)):
+      for j in range(len(Clusters['Cluster' + str(i)])):
+        diff = Clusters['Cluster' + str(i)][j] - Cluster_Centers['Cluster_Center' + str(i)]
+        Sq_diff = (diff**2)
+        sq_diff.append(Sq_diff)
+      Sq_diff_sum = sum(sum(sq_diff))
+      sq_diff = []
+      n = len(Clusters['Cluster' + str(i)])
+      Sqrt_diff_sum = np.sqrt(Sq_diff_sum/n)
+      intra_rmse.append(Sqrt_diff_sum)
+    return intra_rmse
+
+
+
+  # RMSE Calculation
+  def rmse(input,formed_clusters):
+    inter_rmse = []
+    avg_cluster = {}
+    
+    Clusters, Cluster_Centers = nor_get_clusters_and_centers(trans_data,formed_clusters)
+    
+    mat = pd.DataFrame(columns=range(len(Clusters)),index=range(len(Clusters)))
+    #for i in range(len(Clusters)):
+    #  avg_cluster['avg_cluster'+str(i)] = np.mean(Clusters['Cluster' + str(i)],axis=0)
+    for i in range(len(Clusters)):
+      for j in range(len(Clusters)):
+        if i == j:
+          a = nor_intra_rmse(trans_data,formed_clusters)
+          mat[i].iloc[j] = round(a[i],2)
+        else:
+          #diff = avg_cluster['avg_cluster' + str(i)] - avg_cluster['avg_cluster' + str(j)]
+          diff = Cluster_Centers['Cluster_Center' + str(i)] - Cluster_Centers['Cluster_Center' + str(j)]
+          Sq_diff = (diff**2)
+          #Sq_diff_sum = sum(Sq_diff)
+          Sq_diff_sum = sum(Sq_diff)
+          #inter_rmse.append(np.sqrt(Sq_diff_sum))
+          Sqrt_diff_sum = np.sqrt(Sq_diff_sum)
+          mat[i].iloc[j] = round(Sqrt_diff_sum,2)
+          #print('Inter RMSE between cluster',i,'and cluster',j,'is:',inter_rmse.pop())
+
+    return mat
+  return rmse(input,formed_clusters)
