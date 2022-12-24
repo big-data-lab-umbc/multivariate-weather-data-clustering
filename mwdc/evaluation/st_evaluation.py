@@ -15,10 +15,15 @@ def st_rmse(input_path, variables,formed_clusters, transformation=True):
 
   '''
   input: 
-        datatype: 4-D spatio-temporal xarray
+        
+        input_path: path to your netCDF file
+
+        variables: List of netCDF variable you wish to use
 
         formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
                          to a cluster label
+        
+        transformation: Boolean that accepts only "True" or "False"
 
   Output:
          
@@ -116,15 +121,20 @@ def st_corr(input_path, variables,formed_clusters, transformation=True):
 
   '''
   input: 
-        datatype: 4-D spatio-temporal xarray
+        
+        input_path: path to your netCDF file
+
+        variables: List of netCDF variable you wish to use
 
         formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
                          to a cluster label
+        
+        transformation: Boolean that accepts only "True" or "False"
 
   Output:
          
-        An N X M matrix whose diagonal is a measure of intra-spatial correlation between data points in a cluster
-        while the rest of the values represent the inter-spatial correlation between data points in different clusters.
+        An N X M matrix whose diagonal is a measure of intra-rmse between data points in a cluster
+        while the rest of the values represent the inter-rmse between data points in different clusters.
      
   '''
 
@@ -225,15 +235,20 @@ def st_corr(input_path, variables,formed_clusters, transformation=True):
 def st_calinski(input_path, variables,formed_clusters, transformation=True):
   '''
   input: 
-        datatype: 4-D spatio-temporal xarray
+        
+        input_path: path to your netCDF file
+
+        variables: List of netCDF variable you wish to use
 
         formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
                          to a cluster label
+        
+        transformation: Boolean that accepts only "True" or "False"
 
   Output:
          
-        An N X M matrix whose diagonal is a measure of intra-spatial correlation between data points in a cluster
-        while the rest of the values represent the inter-spatial correlation between data points in different clusters.
+        An N X M matrix whose diagonal is a measure of intra-rmse between data points in a cluster
+        while the rest of the values represent the inter-rmse between data points in different clusters.
      
   '''
 
@@ -342,15 +357,20 @@ def st_calinski(input_path, variables,formed_clusters, transformation=True):
 def davies_bouldin(input_path, variables,formed_clusters, transformation=True):
   '''
   input: 
-        datatype: 4-D spatio-temporal xarray
+        
+        input_path: path to your netCDF file
+
+        variables: List of netCDF variable you wish to use
 
         formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
                          to a cluster label
+        
+        transformation: Boolean that accepts only "True" or "False"
 
   Output:
          
-        An N X M matrix whose diagonal is a measure of intra-spatial correlation between data points in a cluster
-        while the rest of the values represent the inter-spatial correlation between data points in different clusters.
+        An N X M matrix whose diagonal is a measure of intra-rmse between data points in a cluster
+        while the rest of the values represent the inter-rmse between data points in different clusters.
      
   '''
 
