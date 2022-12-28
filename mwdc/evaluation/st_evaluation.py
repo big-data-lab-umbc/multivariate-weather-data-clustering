@@ -9,6 +9,7 @@ Original file is located at
 
 from mwdc.preprocessing.preprocessing import data_preprocessing
 from mwdc.clustering import *
+import pandas as pd
 
 
 def st_rmse(input_path, variables,formed_clusters, transformation=True):
