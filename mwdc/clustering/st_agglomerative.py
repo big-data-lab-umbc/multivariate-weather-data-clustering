@@ -23,6 +23,8 @@ from sklearn import cluster
 from sklearn.metrics import *
 
 from mwdc.preprocessing.preprocessing import data_preprocessing, pca1
+from mwdc.evaluation.st_evaluation import *
+
 
 
 
