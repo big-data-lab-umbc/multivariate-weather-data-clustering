@@ -14,10 +14,10 @@ def kmedoids(X,data): # X is the number of n_clusters, 'data' is for data input
       #print("Silhouette Coefficient: %0.3f" % silhouette_score(x, labels))
       return frame,labels
 
-def optimalk(data,metric='cosine'):
+def optimalk(data,metrics='cosine'):
   cost =[]
   for i in range(1, 11):
-      KM =KMedoids(n_clusters = i,metric ,init='k-medoids++', max_iter = 500)
+      KM =KMedoids(n_clusters = i, metric=metrics,init='k-medoids++', max_iter = 500)
       KM.fit(data)
       
       # calculates squared error
