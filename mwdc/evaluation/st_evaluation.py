@@ -9,9 +9,7 @@ Original file is located at
 
 from mwdc.preprocessing.preprocessing import data_preprocessing
 from mwdc.clustering import *
-import pandas as pd
-import numpy as np
-from sklearn.metrics import silhouette_samples
+
 
 def st_rmse(input_path, variables,formed_clusters, transformation=True):
 
@@ -25,7 +23,12 @@ def st_rmse(input_path, variables,formed_clusters, transformation=True):
         formed_clusters: 1-D array of cluster labels classifying each data point along the time dimension
                          to a cluster label
         
-        transformation: Boolean that accepts only "True" or "False"
+        transformation: Boolean that accepts only "True" or "False". 
+                        User selects "True" when input data is in the form of a 4-d xarray
+                        User selects "False" when input data is in the form of a 2-d dataframe
+
+                        At the moment our application accepts raw data only only in the form of 4-d xarray
+                        and operates through a transformation process to 2-d pandas dataframe.
 
   Output:
          
@@ -627,7 +630,6 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
 ############################RMSE Function using Numpy Array Data-Preprocessing#################################################
 
 ###### (Only takes 10-15 Sec, result is same as old function)
-from mwdc.preprocessing.preprocessing import data_preprocessing
 
 def st_rmse_omar(data_path,formed_clusters):
 
