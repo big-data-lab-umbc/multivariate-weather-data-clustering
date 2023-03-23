@@ -9,7 +9,7 @@ def dbscanreal(x,eps1=0.5,min=5,metrics='cosine'):
       # x is for data input , the input should be transformed .
       # A new parameter for distance metrics has been added.
       # Use eps =0.5, min_sample=0.5 as default
-      db = DBSCAN(eps=eps1,min_samples=min,metric='metrics').fit(x)  # cosine distance calculation
+      db = DBSCAN(eps=eps1,min_samples=min,metric=metrics).fit(x)  # cosine distance calculation
       core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
       core_samples_mask[db.core_sample_indices_] = True
       labels = db.labels_
