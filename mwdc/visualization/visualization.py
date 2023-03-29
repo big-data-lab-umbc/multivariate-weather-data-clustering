@@ -7,8 +7,7 @@ import matplotlib as mpl
 import matplotlib.colors as colors
 import os
 
-
-def visualization(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10','v10','sshf','sp']):  
+def visualization2(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10','v10','sshf','sp']):  
     # data_file is the .nc file ,  cluster_filename is the csv file which contains clusterid and time_step.
     # Example data_file = 'path/data.nc'  It is the raw unprocessed data
     # Example cluster_filename = 'path/clusters.csv'  # This file contains what cluster belongs to what date.
@@ -57,7 +56,8 @@ def visualization(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10
       ax=plt.subplot(panel)
       if(ifcontourf):  
         p1=plt.contourf(lon0,lat0,var,cmap=cmap0,levels=np.arange(var_range[0],var_range[1],(var_range[1]-var_range[0])/31),extend = 'both') 
-        p1.ax.tick_params(labelsize=12)
+        plt.tick_params('both',labelsize=12)
+        #p1.ax.tick_params(labelsize=12)
         plotcoastline(color='k',)
         plt.xlim([min(lon0),max(lon0)])  
         plt.ylim([min(lat0),max(lat0)])    
@@ -72,7 +72,8 @@ def visualization(data_file,cluster_filename,coast_file,varids=['sst','t2m','u10
             
       else:
         p1=ax.contour(lon0,lat0,var,cmap=cmap0,levels=np.arange(var_range[0],var_range[1],(var_range[1]-var_range[0])/11),extend = 'both',linewidth=0.6) 
-        p1.ax.tick_params(labelsize=12)
+        plt.tick_params('both',labelsize=12)
+        #p1.ax.tick_params(labelsize=12)
         plt.title(title,loc='right')
         if(colorbar):
             ticks = np.linspace(var_range[0], var_range[1], 12, endpoint=True)
