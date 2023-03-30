@@ -12,7 +12,7 @@ from mwdc.clustering import *
 import pandas as pd
 import numpy as np
 
-def st_rmse(input_path, variables,formed_clusters, transformation=True):
+def st_rmse_df(input_path, variables,formed_clusters, transformation=True):
 
   '''
   input: 
@@ -632,7 +632,7 @@ def compute_silhouette_score(X, labels,transformation=False, *, metric="euclidea
 
 ###### (Only takes 10-15 Sec, result is same as old function)
 
-def st_rmse_omar(data_path,formed_clusters):
+def st_rmse_np(data_path,formed_clusters):
 
   '''
   input: 
