@@ -296,8 +296,6 @@ def data_preprocessing(data_path, variables):
     
     Return value:
        The function will return the normalized values of the selected variables as a 2D NumPy array of size (365 x ___)  
-
-       -- By Omar Faruque
       '''
   rdata_daily = xr.open_dataset(data_path)    
   if(len(variables)==0):
@@ -319,3 +317,36 @@ def data_preprocessing(data_path, variables):
   return rdata_daily_np_array_T_R_nor
 
 ######## End of Data Transformation Function using NumPy Array ##########
+
+
+######## Data Preprocessing Function using Variable wise normalization (NumPy Array) ##########
+def data_preprocessing_nor_variable_wise(data_path, variables):
+  ''' The parameters accepted by this function are as follows:
+    1. "data_path" is the path of the netCDF4 dataset file. (data_path = '/content/drive/MyDrive/ERA5_meteo_sfc_2021_daily.nc')
+    2. "variables" is an array of the variable names of the netCDF4 dataset those we want to read. (variables = ['sst', 'sp']) 
+        If the "variables" array is empty the function will read the whole dataset. 
+    
+    Return value:
+       The function will return the normalized values of the selected variables as a 2D NumPy array of size (365 x ___)  and a 4D array as (365, 41, 41, ___). 
+      '''
+  
+  rdata_daily = xr.open_dataset(data_path)    # data_path = '/content/drive/MyDrive/ERA5_Dataset.nc'   
+  if(len(variables)==0):
+    rdata_daily_np_array = np.array(rdata_daily.to_array()) # the shape of the dailt data is (7, 365, 41, 41)
+  else:
+    rdata_daily_np_array = np.array(rdata_daily[variables].to_array())
+  rdata_daily_np_array_R = rdata_daily_np_array.reshape((rdata_daily_np_array.shape[0], -1)) #(7, 613565)
+  for i in range (rdata_daily_np_array_R.shape[0]):
+    tmp = rdata_daily_np_array_R[i]
+    tmp[np.isnan(tmp)]=np.nanmean(tmp)
+    rdata_daily_np_array_R[i] = tmp 
+  min_max_scaler = MinMaxScaler() # calling the function
+  rdata_daily_np_array_nor =  min_max_scaler.fit_transform(rdata_daily_np_array_R.T).T  
+  rdata_daily_np_array_nor_4D = rdata_daily_np_array_nor.reshape(rdata_daily_np_array.shape) # (7, 613565) to (7, 365, 41, 41)
+  rdata_daily_np_array_nor_4D_T = rdata_daily_np_array_nor_4D.transpose(1,2,3,0)   #  (7, 365, 41, 41) to (365, 41, 41, 7)
+  rdata_daily_np_array_nor_4D_T_R = rdata_daily_np_array_nor_4D_T.reshape((rdata_daily_np_array_nor_4D_T.shape[0], -1)) #(365, 11767)
+  data_2d = rdata_daily_np_array_nor_4D_T_R
+  data_4d = rdata_daily_np_array_nor_4D_T
+  return data_2d,  data_4d
+
+######## End of Data Preprocessing Function using Variable wise normalization (NumPy Array) ##########
