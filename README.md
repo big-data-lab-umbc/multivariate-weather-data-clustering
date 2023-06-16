@@ -1,6 +1,6 @@
-# This is the branch for our proposed DSC model for multivariate-weather-data-clustering
+# This is the branch for our proposed Deep Spatiotemporal Clustering model for Multi-dimensional Climate Data Clustering
 
-[Detailed code for our DSC model and other deep learning models](https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering/tree/DSC/Benchmark/Deep_Learning_Methods)
+[Detailed code for our DSC model and other deep learning models](https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering/tree/DSC/Benchmark/Deep_Learning_Methods) available in this link.
 
 Citation info: 
 
