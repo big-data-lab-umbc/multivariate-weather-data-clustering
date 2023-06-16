@@ -1,4 +1,8 @@
-# multivariate-weather-data-clustering
+# This is the branch for our proposed DSC model for multivariate-weather-data-clustering
+
+[Detailed code for our DSC model and other deep learning models](https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering/tree/DSC/Benchmark/Deep_Learning_Methods)
+
+Citition info: 
 
 ## Download
 
