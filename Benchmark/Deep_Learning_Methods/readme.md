@@ -25,7 +25,8 @@ This repository contains the code implementation of our proposed model and all t
 
 - DSC_Clustering_Model.ipynb: The proposed Deep Spatiotemporal Clustering method implementation is available in this notebook.
 - DEC-Clustering-Model.ipynb: The Deep Embedded Clustering (DEC)[4] baseline model is applied to our dataset in this notebook.  
-- DTC-Clustering-Model.ipynb: The Deep Temporal Clustering (DTC)[5] baseline model is applied to our dataset in this notebook.  
+- DTC-Clustering-Model.ipynb: The Deep Temporal Clustering (DTC)[5] baseline model is applied to our dataset in this notebook.
+- K-Means_And_Hierarchical_Clustering_Algorithms.ipynb: In this notebook, we applied the k-means and hierarchical clustering algorithm on the dataset as the state-of-the-art method.   
 - CNN_LSTM_Encoder.ipynb: In this notebook, we only applied the encoder part of the proposed model on the dataset. It is part of the ablation study to find the effectiveness of the proposed autoencoder model.
 - CNN_Autoencoder_Model.ipynb: Here we have developed an autoencoder model using CNN deep learning layers and applied it to our dataset for clustering. 
 - CNN_Encoder_Model.ipynb: In this notebook, the encoder part of the CNN autoencoder model is applied for clustering to compare  the clustering results of the CNN Autoencoder and Encoder model.
@@ -36,7 +37,7 @@ This repository contains the code implementation of our proposed model and all t
 2. European Centre for Medium-Range Weather Forecasts. ERA-5 global reanalysis product. https://cds.climate.copernicus.eu/cdsapp#!/home, 2021. Last Accessed: 2021-9-5.
 3. Ronneberger, O., Fischer, P., Brox, T.: U-net: Convolutional networks for biomedical image segmentation. In: Medical Image Computing and Computer-Assisted Intervention–MICCAI 2015: 18th International Conference, Munich, Germany, October 5-9, 2015, Proceedings, Part III 18 (pp. 234-241). Springer International Publishing.
 4. Xie, J., Girshick, R., Farhadi, A.: Unsupervised deep embedding for clustering analysis. In: International conference on machine learning. PMLR, 2016.
-5. Madiraju, N. S., Sadat, S. M., Fisher, D., Karimabadi, H.: Deep Temporal Clustering: Fully Unsupervised Learning of Time-Domain Features. IN: ArXiv (2018). https://doi.org/10.48550/arXiv.1802.01059.
+5. Madiraju, N. S., Sadat, S. M., Fisher, D., Karimabadi, H.: Deep Temporal Clustering: Fully Unsupervised Learning of Time-Domain Features. In: ArXiv (2018). https://doi.org/10.48550/arXiv.1802.01059.
 6. Ghosh, R., Jia, X., Yin, L., Lin, C., Jin, Z., Kumar, V.: Clustering augmented self-supervised learning: an application to land cover mapping. In: 30th International Conference on Advances in Geographic Information Systems (SIGSPATIAL’22). Association for Computing Machinery, New York, NY, USA, Article 3, 1–10. https://doi.org/10.1145/3557915.3560937.
 7. Ma, Q., Zheng, J., Li, S., Cottrell, G. W.: Learning representations for time series clustering. In: 33rd International Conference on Neural Information Processing System (2019). Curran Associates Inc., Red Hook, NY, USA, Article 339, 3781–3791.
 8. Hadifar, A., Sterckx, L., Demeester, T., Develder, C.: A self-training approach for short text clustering. In: 4th Workshop on Representation Learning for NLP (RepL4NLP-2019) (pp. 194-199), Florence, Italy (2019, August).
