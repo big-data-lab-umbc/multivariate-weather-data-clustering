@@ -14,7 +14,7 @@ For this study, we use the open-access atmospheric reanalysis data  from Europea
 | :---:                      |   :---:    |  :---:  | :---: |
 | Sea Surface Temperature    | sst        | $k$     | 285-300 |
 | 2 meter Air Temperature    | t2m        | $k$     | 281 to 299 |
-| Surface Pressure           | sp         | $pa$    | 98260 to 103788 |
+| Surface Pressure           | sp         | $Pa$    | 98260 to 103788 |
 | Surface Sensible Heat Flux | sshf       | $J/m^2$ | -674528 to 200024 |
 | Surface Latent Heat Flux   | slhf       | $J/m^2$ | -1840906 to 90131|
 | 10-meter U wind            | u10        | $m/s$   | -16 to 19 |
