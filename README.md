@@ -4,7 +4,7 @@ Detailed code for our Deep Spatiotemporal Clustering (DSC) model and other deep 
 
 Citation info: 
 
-
+Arxiv version: [2304.14541](https://arxiv.org/abs/2304.14541)
 
 ## Download
 
