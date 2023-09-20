@@ -2,7 +2,7 @@
 
 Detailed code for our Deep Spatiotemporal Clustering (DSC) model and other deep learning models is available in [https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering/tree/DSC/Benchmark/Deep_Learning_Methods](https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering/tree/DSC/Benchmark/Deep_Learning_Methods).
 
-Citation info: 
+Citation info: Faruque, O., Nji, F.N., Cham, M., Salvi, R.M., Zheng, X., Wang, J. (2023). Deep Spatiotemporal Clustering: A Temporal Clustering Approach for Multi-dimensional Climate Data. In: De Francisci Morales, G., Perlich, C., Ruchansky, N., Kourtellis, N., Baralis, E., Bonchi, F. (eds) Machine Learning and Knowledge Discovery in Databases: Applied Data Science and Demo Track. ECML PKDD 2023. Lecture Notes in Computer Science(), vol 14175. Springer, Cham. [DOI:10.1007/978-3-031-43430-3_6](https://doi.org/10.1007/978-3-031-43430-3_6)
 
 Arxiv version: [2304.14541](https://arxiv.org/abs/2304.14541)
 
