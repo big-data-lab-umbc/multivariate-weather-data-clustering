@@ -4,30 +4,6 @@ Detailed code for our Deep Spatiotemporal Clustering (DSC) model and other deep 
 
 Citation info: Faruque, O., Nji, F.N., Cham, M., Salvi, R.M., Zheng, X., Wang, J. (2023). Deep Spatiotemporal Clustering: A Temporal Clustering Approach for Multi-dimensional Climate Data. In: De Francisci Morales, G., Perlich, C., Ruchansky, N., Kourtellis, N., Baralis, E., Bonchi, F. (eds) Machine Learning and Knowledge Discovery in Databases: Applied Data Science and Demo Track. ECML PKDD 2023. Lecture Notes in Computer Science(), vol 14175. Springer, Cham. [DOI:10.1007/978-3-031-43430-3_6](https://doi.org/10.1007/978-3-031-43430-3_6)
 
-'''
-@InProceedings{10.1007/978-3-031-43430-3_6,
-author="Faruque, Omar
-and Nji, Francis Ndikum
-and Cham, Mostafa
-and Salvi, Rohan Mandar
-and Zheng, Xue
-and Wang, Jianwu",
-editor="De Francisci Morales, Gianmarco
-and Perlich, Claudia
-and Ruchansky, Natali
-and Kourtellis, Nicolas
-and Baralis, Elena
-and Bonchi, Francesco",
-title="Deep Spatiotemporal Clustering: A Temporal Clustering Approach for Multi-dimensional Climate Data",
-booktitle="Machine Learning and Knowledge Discovery in Databases: Applied Data Science and Demo Track",
-year="2023",
-publisher="Springer Nature Switzerland",
-address="Cham",
-pages="90--105",
-abstract="Clustering high-dimensional spatiotemporal data using an unsupervised approach is a challenging problem for many data-driven applications. Existing state-of-the-art methods for unsupervised clustering use different similarity and distance functions but focus on either spatial or temporal features of the data. Concentrating on joint deep representation learning of spatial and temporal features, we propose Deep Spatiotemporal Clustering (DSC), a novel algorithm for the temporal clustering of high-dimensional spatiotemporal data using an unsupervised deep learning method. Inspired by the U-net architecture, DSC utilizes an autoencoder integrating CNN-RNN layers to learn latent representations of the spatiotemporal data. DSC also includes a unique layer for cluster assignment on latent representations that uses the Student's t-distribution. By optimizing the clustering loss and data reconstruction loss simultaneously, the algorithm gradually improves clustering assignments and the nonlinear mapping between low-dimensional latent feature space and high-dimensional original data space. A multivariate spatiotemporal climate dataset is used to evaluate the efficacy of the proposed method. Our extensive experiments show our approach outperforms both conventional and deep learning-based unsupervised clustering algorithms. Additionally, we compared the proposed model with its various variants (CNN encoder, CNN autoencoder, CNN-RNN encoder, CNN-RNN autoencoder, etc.) to get insight into using both the CNN and RNN layers in the autoencoder, and our proposed technique outperforms these variants in terms of clustering results.",
-isbn="978-3-031-43430-3"
-}
-
 Arxiv version: [2304.14541](https://arxiv.org/abs/2304.14541)
 
 ## Download
