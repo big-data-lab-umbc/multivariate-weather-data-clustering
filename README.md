@@ -1,4 +1,4 @@
-# multivariate-weather-data-clustering
+# multivariate-weather-data-clustering for HESC branch
 
 ## Download
 
@@ -28,7 +28,7 @@ There are three ways to Download and Manage the MWDC package:
 
 #### 1. On PC
 
-To install the package you need to create an environment using [pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) or [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). 
+To install the package you need to create an environment using [pip](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) or [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
 ##### Conda environment setup
 ```bash
