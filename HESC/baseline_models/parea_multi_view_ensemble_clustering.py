@@ -25,7 +25,7 @@ drive.mount('/content/drive')
 !pip install "dask[dataframe]"
 !pip install netCDF4
 
-!git clone https://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@github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
+!git clone https://""@github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
 
 # Commented out IPython magic to ensure Python compatibility.
 # %cd multivariate-weather-data-clustering
