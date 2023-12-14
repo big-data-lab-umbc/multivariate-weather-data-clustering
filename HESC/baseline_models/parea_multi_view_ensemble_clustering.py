@@ -92,66 +92,6 @@ import datetime as dt
 from netCDF4 import date2num,num2date
 from math import sqrt
 
-# from sklearn import preprocessing
-# from sklearn.preprocessing import MinMaxScaler
-
-# def data_preprocessing(data_path):
-#   rdata_daily = xr.open_dataset(data_path)    # data_path = '/content/drive/MyDrive/ERA5_Dataset.nc'
-#   rdata_daily_np_array = np.array(rdata_daily.to_array())   # the shape of the dailt data is (7, 365, 41, 41)
-#   rdata_daily_np_array_latitude = np.concatenate((rdata_daily_np_array, np.zeros((7, 365, 41,7), dtype=int)), axis=3)
-#   rdata_daily_np_array_longitude = np.concatenate((rdata_daily_np_array_latitude, np.zeros((7, 365, 7, 48), dtype=int)), axis=2)
-#   rdata_daily_np_array = rdata_daily_np_array_longitude
-#   rdata_daily_np_array_T = rdata_daily_np_array.transpose(1,0,2,3)   # transform the dailt data from (7, 365, 41, 41) to (365, 7, 41, 41)
-#   overall_mean = np.nanmean(rdata_daily_np_array_T[:, :, :, :])
-#   for i in range(rdata_daily_np_array_T.shape[0]):
-#     for j in range(rdata_daily_np_array_T.shape[1]):
-#       for k in range(rdata_daily_np_array_T.shape[2]):
-#         for l in range(rdata_daily_np_array_T.shape[3]):
-#           if np.isnan(rdata_daily_np_array_T[i, j, k, l]):
-#             #print("NAN data in ", i, j, k, l)
-#             rdata_daily_np_array_T[i, j, k, l] = overall_mean
-#   rdata_daily_np_array_T = rdata_daily_np_array_T.transpose(0,2,3,1)
-#   rdata_daily_np_array_T_R = rdata_daily_np_array_T.reshape((rdata_daily_np_array_T.shape[0], -1))  # transform the dailt data from (365, 7, 41, 41) to (365, 11767)
-#   min_max_scaler = preprocessing.MinMaxScaler() # calling the function
-#   rdata_daily_np_array_T_R_nor = min_max_scaler.fit_transform(rdata_daily_np_array_T_R)   # now normalize the data, otherwise the loss will be very big
-#   #rdata_daily_np_array_T_R_nor = np.float32(rdata_daily_np_array_T_R_nor)    # convert the data type to float32, otherwise the loass will be out-of-limit
-#   rdata_daily_np_array_T_R_nor_R = rdata_daily_np_array_T_R_nor.reshape((rdata_daily_np_array_T_R_nor.shape[0], 1, rdata_daily_np_array.shape[2], rdata_daily_np_array.shape[3], rdata_daily_np_array.shape[0]))
-# #   return rdata_daily_np_array_T_R_nor, rdata_daily_np_array_T_R_nor_R
-
-# from sklearn import preprocessing
-# from sklearn.preprocessing import MinMaxScaler
-
-# def datatransformation(data_path, variables):
-#   ''' The parameters accepted by this function are as follows:
-#     1. "data_path" is the path of the netCDF4 dataset file. (data_path = '/content/drive/MyDrive/ERA5_meteo_sfc_2021_daily.nc')
-#     2. "variables" is an array of the variable names of the netCDF4 dataset those we want to read. (variables = ['sst', 'sp'])
-#         If the "variables" array is empty the function will read the whole dataset.
-
-#     Return value:
-#        The function will return the normalized values of the selected variables as a 2D NumPy array of size (365 x ___)  and a 4D array as (365, 41, 41, ___).
-#       '''
-
-#   rdata_daily = xr.open_dataset(data_path)    # data_path = '/content/drive/MyDrive/ERA5_Dataset.nc'
-#   if(len(variables)==0):
-#     rdata_daily_np_array = np.array(rdata_daily.to_array()) # the shape of the dailt data is (7, 365, 41, 41)
-#   else:
-#     rdata_daily_np_array = np.array(rdata_daily[variables].to_array())
-#   rdata_daily_np_array_R = rdata_daily_np_array.reshape((rdata_daily_np_array.shape[0], -1)) #(7, 613565)
-#   for i in range (rdata_daily_np_array_R.shape[0]):
-#     tmp = rdata_daily_np_array_R[i]
-#     tmp[np.isnan(tmp)]=np.nanmean(tmp)
-#     rdata_daily_np_array_R[i] = tmp
-#   min_max_scaler = MinMaxScaler() # calling the function
-#   rdata_daily_np_array_nor =  min_max_scaler.fit_transform(rdata_daily_np_array_R.T).T
-#   rdata_daily_np_array_nor_4D = rdata_daily_np_array_nor.reshape(rdata_daily_np_array.shape) # (7, 613565) to (7, 365, 41, 41)
-#   rdata_daily_np_array_nor_4D_T = rdata_daily_np_array_nor_4D.transpose(1,2,3,0)   #  (7, 365, 41, 41) to (365, 41, 41, 7)
-#   rdata_daily_np_array_nor_4D_T_R = rdata_daily_np_array_nor_4D_T.reshape((rdata_daily_np_array_nor_4D_T.shape[0], -1)) #(365, 11767)
-#   data_2d = rdata_daily_np_array_nor_4D_T_R
-#   data_4d = rdata_daily_np_array_nor_4D_T
-#   return data_2d, data_4d
-
-
-
 from sklearn.metrics import silhouette_samples, silhouette_score
 def silhouette_score1(X, labels, *, metric="cosine", sample_size=None, random_state=None, **kwds):
  return np.mean(silhouette_samples(X, labels, metric="cosine", **kwds))
@@ -230,13 +170,8 @@ def parea(data):
 
 """# **Evaluation Metrics**
 
-**Silhouette Score**
+**Davies bouldin**
 """
-
-def silhouette_score1(X, labels, *, metric="cosine", sample_size=None, random_state=None, **kwds):
- return np.mean(silhouette_samples(X, labels, metric=metric, **kwds))
-
-"""**Davies bouldin**"""
 
 def davies_bouldin_score(X, labels):
  return print("Davies-Bouldin score is ", davies_bouldin_score(X, labels))
