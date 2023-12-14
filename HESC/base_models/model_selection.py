@@ -184,10 +184,7 @@ def avg_inter_dist(norm_data, clustering_results):
 
   return (print("The Average Inter-cluster dist is:", avg_inter))
 
-"""[Source](https://machinelearningmastery.com/clustering-algorithms-with-python/)
-
-# **Number of clusters using KMeans**
-"""
+"""# **Number of clusters using KMeans**"""
 
 # Elbow Method for Agglomerative Clustering
 model = KMeans()
@@ -231,6 +228,29 @@ u,indices = np.unique(result_km,return_counts = True)
 print("Silhouette score is ", silh)
 print("Cluster index ", u, "and Cluster Sizes: ", indices)
 
+
+
+silh = silhouette_score1(data_nor,  result_km)
+u,indices = np.unique(result_km,return_counts = True)
+
+print("Silhouette score is ", silh)
+print("Cluster index ", u, "and Cluster Sizes: ", indices)
+
+from sklearn.metrics import davies_bouldin_score
+
+db = davies_bouldin_score(data_nor, result_km)
+print("Davies-Bouldin score is ", db)
+
+from sklearn.metrics import calinski_harabasz_score
+ch = calinski_harabasz_score(data_nor, result_km)
+print("Davies-Bouldin score is ", ch)
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_km))
+
+print("Variance is ", avg_var(data_nor, result_km))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_km))
+
 def best_clustering(n):
 
   n # Number of single models used
@@ -261,7 +281,7 @@ def best_clustering(n):
 
   return sil[max_index]
 
-#silhouette, result_km = best_clustering(20)
+silhouette, result_km = best_clustering(20)
 
 silh = silhouette_score1(data_nor,  result_km)
 u,indices = np.unique(result_km,return_counts = True)
@@ -287,6 +307,29 @@ print("Inter-cluster distance ", avg_inter_dist(data_nor, result_km))
 """# **Hierachical Clustering**"""
 
 result_a = AgglomerativeClustering(n_clusters = 7, affinity = 'euclidean', linkage ='ward').fit_predict(data_nor)
+
+
+
+silh = silhouette_score1(data_nor,  result_a)
+u,indices = np.unique(result_a,return_counts = True)
+
+print("Silhouette score is ", silh)
+print("Cluster index ", u, "and Cluster Sizes: ", indices)
+
+from sklearn.metrics import davies_bouldin_score
+
+db = davies_bouldin_score(data_nor, result_a)
+print("Davies-Bouldin score is ", db)
+
+from sklearn.metrics import calinski_harabasz_score
+ch = calinski_harabasz_score(data_nor, result_a)
+print("Davies-Bouldin score is ", ch)
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_a))
+
+print("Variance is ", avg_var(data_nor, result_a))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_a))
 
 def best_clustering5(n):
 
@@ -319,7 +362,7 @@ def best_clustering5(n):
   #return sil[max_index]
   return sil[max_index]
 
-#silhouette, result_a = best_clustering5(50)
+silhouette, result_a = best_clustering5(50)
 
 silh = silhouette_score1(data_nor,  result_a)
 u,indices = np.unique(result_a,return_counts = True) # sc=0.3412 st 64
@@ -353,17 +396,42 @@ from matplotlib import pyplot
 # model = SpectralClustering(n_clusters=2)
 model = SpectralClustering(n_clusters=7, affinity='nearest_neighbors', random_state=0)
 # fit model and predict clusters
-result_sc = model.fit_predict(X)
+result_ssc = model.fit_predict(X)
 # retrieve unique clusters
-clusters = unique(result_sc)
+clusters = unique(result_ssc)
 # create scatter plot for samples from each cluster
 for cluster in clusters:
  # get row indexes for samples with this cluster
- row_ix = where(result_sc == cluster)
+ row_ix = where(result_ssc == cluster)
  # create scatter of these samples
  pyplot.scatter(X[row_ix, 0], X[row_ix, 1])
 # show the plot
 pyplot.show()
+
+
+
+
+
+silh = silhouette_score1(data_nor,  result_ssc)
+u,indices = np.unique(result_ssc,return_counts = True)
+
+print("Silhouette score is ", silh)
+print("Cluster index ", u, "and Cluster Sizes: ", indices)
+
+from sklearn.metrics import davies_bouldin_score
+
+db = davies_bouldin_score(data_nor, result_ssc)
+print("Davies-Bouldin score is ", db)
+
+from sklearn.metrics import calinski_harabasz_score
+ch = calinski_harabasz_score(data_nor, result_ssc)
+print("Davies-Bouldin score is ", ch)
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_ssc))
+
+print("Variance is ", avg_var(data_nor, result_ssc))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_ssc))
 
 def best_clustering5(n):
 
@@ -396,7 +464,7 @@ def best_clustering5(n):
   #return sil[max_index]
   return sil[max_index]
 
-#silhouette, result_sc = best_clustering5(40)
+silhouette, result_sc = best_clustering5(40)
 
 silh = silhouette_score1(data_nor,  result_sc)
 u,indices = np.unique(result_sc,return_counts = True) # sc=0.3412 st 64
@@ -427,17 +495,37 @@ from matplotlib import pyplot
 
 model = DBSCAN(eps=0.80, min_samples=10)
 # fit model and predict clusters
-yhat_db = model.fit_predict(X)
+result_sdb = model.fit_predict(X)
 # retrieve unique clusters
-clusters = unique(yhat_db)
+clusters = unique(result_sdb)
 # create scatter plot for samples from each cluster
 for cluster in clusters:
  # get row indexes for samples with this cluster
- row_ix = where(yhat_db == cluster)
+ row_ix = where(result_sdb == cluster)
  # create scatter of these samples
  pyplot.scatter(X[row_ix, 0], X[row_ix, 1])
 # show the plot
 pyplot.show()
+
+
+
+silh = silhouette_score1(data_nor,  result_sdb)
+u,indices = np.unique(result_sdb,return_counts = True) # sc=0.3412 st 64
+# u,indices
+print(silh)
+print(u,indices)
+
+
+
+print("Davies-Bouldin score is ", davies_bouldin_score(data_nor, result_sdb))
+
+print("Calinski Harabas score is ", calinski_harabasz_score(data_nor, result_sdb))
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_sdb))
+
+print("Variance is ", avg_var(data_nor, result_sdb))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_sdb))
 
 
 
@@ -475,7 +563,7 @@ def best_clustering(n):
 
   return sil[max_index]
 
-# silhouette, result_db = best_clustering(10)
+#silhouette, result_db = best_clustering(10)
 
 # silh = silhouette_score1(data_nor,  result_db)
 # u,indices = np.unique(result_db,return_counts = True) # sc=0.3412 st 64
@@ -524,21 +612,41 @@ def pca1(data,n): # data is data to be input , n is the number of components
 
 
 # define the model
-model = AffinityPropagation(damping=0.9)
+model = AffinityPropagation(damping=0.9, preference=-1800, random_state=0)
 # fit the model
 model.fit(X)
 # assign a cluster to each example
-yhat_ap = model.predict(X)
+result_sap = model.predict(X)
 # retrieve unique clusters
-clusters = unique(yhat_ap)
+clusters = unique(result_sap)
 # create scatter plot for samples from each cluster
 for cluster in clusters:
  # get row indexes for samples with this cluster
- row_ix = where(yhat_ap == cluster)
+ row_ix = where(result_sap == cluster)
  # create scatter of these samples
  pyplot.scatter(X[row_ix, 0], X[row_ix, 1])
 # show the plot
 pyplot.show()
+
+
+
+silh = silhouette_score1(data_nor,  result_sap)
+u,indices = np.unique(result_sap,return_counts = True) # sc=0.3412 st 64
+# u,indices
+print(silh)
+print(u,indices)
+
+
+
+print("Davies-Bouldin score is ", davies_bouldin_score(data_nor, result_sap))
+
+print("Calinski Harabas score is ", calinski_harabasz_score(data_nor, result_sap))
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_sap))
+
+print("Variance is ", avg_var(data_nor, result_sap))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_sap))
 
 def best_clustering(n):
 
@@ -554,16 +662,16 @@ def best_clustering(n):
     # fit the model
     model.fit(X)
     # assign a cluster to each example
-    yhat = model.predict(X)
+    result_ap = model.predict(X)
     # retrieve unique clusters
-    clusters = unique(yhat_ap)
+    clusters = unique(result_ap)
     #results = main()
     #sil.append(results)
     #print(results)
-    silhouette_avg_rdata_daily = silhouette_score1(X, yhat_ap)
+    silhouette_avg_rdata_daily = silhouette_score1(X, result_ap)
     sil_score.append(silhouette_avg_rdata_daily)
 
-    sil.append([silhouette_avg_rdata_daily, yhat_ap])
+    sil.append([silhouette_avg_rdata_daily, result_ap])
 
   print("Our silhouettes range is: ", sil_score)
 
@@ -609,17 +717,37 @@ model = Birch(threshold=0.01, n_clusters=7)
 # fit the model
 model.fit(X)
 # assign a cluster to each example
-yhat_b = model.predict(X)
+result_sb = model.predict(X)
 # retrieve unique clusters
-clusters = unique(yhat_b)
+clusters = unique(result_sb)
 # create scatter plot for samples from each cluster
 for cluster in clusters:
  # get row indexes for samples with this cluster
- row_ix = where(yhat_b == cluster)
+ row_ix = where(result_sb == cluster)
  # create scatter of these samples
  pyplot.scatter(X[row_ix, 0], X[row_ix, 1])
 # show the plot
 pyplot.show()
+
+
+
+silh = silhouette_score1(data_nor,  result_sb)
+u,indices = np.unique(result_sb,return_counts = True) # sc=0.3412 st 64
+# u,indices
+print(silh)
+print(u,indices)
+
+
+
+print("Davies-Bouldin score is ", davies_bouldin_score(data_nor, result_sb))
+
+print("Calinski Harabas score is ", calinski_harabasz_score(data_nor, result_sb))
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_sb))
+
+print("Variance is ", avg_var(data_nor, result_sb))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_sb))
 
 def best_clustering(n):
 
@@ -687,17 +815,33 @@ from matplotlib import pyplot
 # define the model
 model = OPTICS(eps=0.8, min_samples=10)
 # fit model and predict clusters
-yhat_OP = model.fit_predict(X)
+result_sOP = model.fit_predict(X)
 # retrieve unique clusters
-clusters = unique(yhat_OP)
+clusters = unique(result_sOP)
 # create scatter plot for samples from each cluster
 for cluster in clusters:
  # get row indexes for samples with this cluster
- row_ix = where(yhat_OP == cluster)
+ row_ix = where(result_sOP == cluster)
  # create scatter of these samples
  pyplot.scatter(X[row_ix, 0], X[row_ix, 1])
 # show the plot
 pyplot.show()
+
+silh = silhouette_score1(data_nor,  result_sOP)
+u,indices = np.unique(result_sOP,return_counts = True) # sc=0.3412 st 64
+# u,indices
+print(silh)
+print(u,indices)
+
+print("Davies-Bouldin score is ", davies_bouldin_score(data_nor, result_sOP))
+
+print("Calinski Harabas score is ", calinski_harabasz_score(data_nor, result_sOP))
+
+print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', result_sOP))
+
+print("Variance is ", avg_var(data_nor, result_sOP))
+
+print("Inter-cluster distance ", avg_inter_dist(data_nor, result_sOP))
 
 def best_clustering(n):
 
