@@ -133,7 +133,7 @@ def st_agglomerative(input_path, input, variables,n, K, affinity, linkage, p, tr
 
       #var = list(data.variables)[3:]
 
-      rmse = st_rmse(input_path, var, labels, transformation=True)
+      rmse = st_rmse_df(input_path, var, labels, transformation=True)
       print("This is the RMSE evaluation results:")
       print("")
       display(rmse)
