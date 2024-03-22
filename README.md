@@ -9,7 +9,7 @@ There are three ways to Download and Manage the MWDC package:
 2 - Use command line:
 
 ```bash
- git clone https://github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
+ 
 ```
 
 \*Because the repository is private the command line method is not Recomended.
