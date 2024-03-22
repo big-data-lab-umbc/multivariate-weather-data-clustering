@@ -19,7 +19,7 @@ There are three ways to Download and Manage the MWDC package:
 4 - On Google Colab use the command below.
 
 ```bash
-!git clone https://{clasic_access_token}@github.com/big-data-lab-umbc/multivariate-weather-data-clustering.git
+
 ```
 
 \*\* This is how to generat [clasic_access_token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic).
