@@ -117,7 +117,7 @@ def data_preprocessing(data_path):
   rdata_daily_np_array_T_R_nor_R = rdata_daily_np_array_T_R_nor.reshape((rdata_daily_np_array_T_R_nor.shape[0], rdata_daily_np_array.shape[2], rdata_daily_np_array.shape[3], rdata_daily_np_array.shape[0]))
   return rdata_daily_np_array_T_R_nor, rdata_daily_np_array_T_R_nor_R
 
-path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+path = '/content/drive/MyDrive.......Clustering/final/ensemble_alg/Final_ensemble/'
 
 data_nor_eval, data_clustering = data_preprocessing('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
 
@@ -317,7 +317,7 @@ u,indices = np.unique(result_3,return_counts = True) # sc=0.3412 st 64
 print(silh)
 print(u,indices)
 
-#pickle.dump(result_3, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3125.pkl", "wb"))
+#pickle.dump(result_3, open("/content/drive/......./ensemble_alg/Final_ensemble/KMeans_0.3125.pkl", "wb"))
 
 silhouette, result_4 = best_clustering(20)
 
@@ -327,7 +327,7 @@ u,indices = np.unique(result_4,return_counts = True) # sc=0.3412 st 64
 print(silh)
 print(u,indices)
 
-#pickle.dump(result_4, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3389.pkl", "wb"))
+#pickle.dump(result_4, open("/content/drive/......./final/ensemble_alg/Final_ensemble/KMeans_0.3389.pkl", "wb"))
 
 silhouette, result_5 = best_clustering(20)
 
@@ -378,14 +378,14 @@ sim_matrixx[sim_matrixx < occurrence_threshold] = 0
 unique_labels = np.unique(np.concatenate(clustering_models))
 
 print(sim_matrixx)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/KMeans_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/......./final/ensemble_alg/KMeans_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 import numpy as geek
 
 data_nor = data_nor_eval
 
-#sim_matrixx = geek.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
+#sim_matrixx = geek.load('/content/drive/MyDrive.......final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
 
 from sklearn.cluster import SpectralClustering
 spec_clt = SpectralClustering(n_clusters=7, affinity='precomputed',
@@ -398,9 +398,9 @@ final_labels
 
 
 
-#pickle.dump(final_labels, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "wb"))
+#pickle.dump(final_labels, open("/content/d......./final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "wb"))
 
-result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
+result = pickle.load(open("/content/drive/M.......al/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
 data_nor_eval = data_nor
 
@@ -661,7 +661,7 @@ km_unique_labels = np.unique(np.concatenate(kmeans_ens))
 
 # print(km_sim_matrixx)
 
-#np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/KMeans_ens_co_occurrence_matrix.npy', sim_matrixx)
+#np.save('/content/drive/MyDrive......./Non-negative Matrix Factorization/KMeans_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 def best_clustering5(n):
@@ -997,7 +997,7 @@ print("The average silhouette_score is :", silhouette_avg_rdata_daily)
 
 # for clusters in clusters_list: compare_clusterings(np.array(clusters), np.array(clusters_final))
 
-df = pd.read_csv("/content/drive/MyDrive/ECRP_Data_Science/Implementation and Results/Jianwu_test/PCA_Result_Combination/PCA_Combined_var1.csv")
+df = pd.read_csv("/content/drive/MyDrive/ECRP_Data_Science/.......esult_Combination/PCA_Combined_var1.csv")
 
 df2 = df.time_step
 df2
@@ -1008,7 +1008,7 @@ df1 = pd.DataFrame(df2, columns=['time_step'])
 df1['clusterid'] =  clusters
 #df1["cluster"] = cluster.labels_
 df1['clusterid'].value_counts()
-df1.to_csv("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/K-Means.csv")
+df1.to_csv("/content/drive/.......Ensemble_Clustering/final/ensemble_alg/K-Means.csv")
 df1
 
 df1.groupby('clusterid').count()
@@ -1023,9 +1023,9 @@ print(u,indices)
 
 import pickle
 
-#pickle.dump(clusters, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_Ensemble1_029.pkl", "wb"))
+#pickle.dump(clusters, open("/content/drive/......./Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_Ensemble1_029.pkl", "wb"))
 
-#cluster_result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_Ensemble1_029.pkl", "rb"))
+#cluster_result = pickle.load(open("/content/drive/................../final/ensemble_alg/Final_ensemble/KMeans_Ensemble1_029.pkl", "rb"))
 
 base_clustering = silhouette_score1(data_nor_eval,  clusters)
 
