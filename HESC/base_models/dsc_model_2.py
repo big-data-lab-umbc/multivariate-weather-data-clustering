@@ -216,7 +216,7 @@ class CNNModel(object):
         self.model.compile(optimizer=optimizer, loss=['mse', 'kld'])
 
     def fit(self, x, y=None, maxiter=2e4, batch_size=256, tol=1e-3,
-            update_interval=140, save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DSC_2/saved'):
+            update_interval=140, save_dir='/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DSC_2/saved'):
 
         print('Update interval', update_interval)
         save_interval = 500
@@ -312,7 +312,7 @@ def data_preprocessing(data_path):
   rdata_daily_np_array_T_R_nor_R = rdata_daily_np_array_T_R_nor.reshape((rdata_daily_np_array_T_R_nor.shape[0], 1, rdata_daily_np_array.shape[2], rdata_daily_np_array.shape[3], rdata_daily_np_array.shape[0]))
   return rdata_daily_np_array_T_R_nor, rdata_daily_np_array_T_R_nor_R
 
-path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+path = '/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
 
 data_nor_eval, data_clustering = data_preprocessing('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
 
@@ -331,7 +331,7 @@ def main():
     maxiter = 2e4 # Maximum number of times the model traning will iterate
     update_interval = 50 # After each interval the clustering weights will be modified
     tol = 0.0000001 # If there is a cluster change more than this tollerance the model training will run
-    save_dir = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DSC_2/saved' # The trained model will be stored here
+    save_dir = '/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DSC_2/saved' # The trained model will be stored here
 
     # load dataset
     x = data_clustering  # Input dataset of the transformed daily data
@@ -631,14 +631,14 @@ sim_matrixx[sim_matrixx < occurrence_threshold] = 0
 unique_labels = np.unique(np.concatenate(clustering_models))
 
 print(sim_matrixx)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DSC_ens_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DSC_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 import numpy as geek
 
 data_nor_eval = data_nor
 
-#sim_matrixx = geek.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
+#sim_matrixx = geek.load('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
 
 from sklearn.cluster import SpectralClustering
 spec_clt = SpectralClustering(n_clusters=7, affinity='precomputed',
@@ -647,7 +647,7 @@ final_labels = spec_clt.fit_predict(sim_matrixx)
 
 
 
-# result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
+# result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
 """# **Evaluation Metrics**"""
 
