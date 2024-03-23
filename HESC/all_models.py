@@ -230,7 +230,7 @@ var = list(data.variables)[3:]
 data
 var = list(data.variables)[3:]
 
-path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+path = '/content/drive/MyDrive......./final/ensemble_alg/Final_ensemble/'
 
 data_nor, data_clustering = data_preprocessing('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
 
@@ -238,11 +238,11 @@ data_nor.shape, data_clustering.shape
 
 data_nor_nor = data_nor
 
-DSC_cluster_result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
+DSC_cluster_result = pickle.load(open("/content/drive/M......._alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
-DSC_cluster_result1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_0.34805576652439557.pkl", "rb"))
+DSC_cluster_result1 = pickle.load(open("/content/......./ensemble_alg/Final_ensemble/DEC_hom_ens_0.34805576652439557.pkl", "rb"))
 
-DSC_cluster_result2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
+DSC_cluster_result2 = pickle.load(open("/content/......./ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
 
 DSC_cluster_result
 
@@ -271,13 +271,13 @@ print("Variance is ", avg_var(data_nor, DSC_cluster_result))
 
 print("Inter-cluster distance ", avg_inter_dist(data_nor, DSC_cluster_result))
 
-DEC_Cluster_results1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
+DEC_Cluster_results1 = pickle.load(open("/content/.......final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
 
-DEC_Cluster_results2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_0.30096328.pkl", "rb"))
+DEC_Cluster_results2 = pickle.load(open("/content/drive......./ensemble_alg/Final_ensemble/DEC_hom_ens_0.30096328.pkl", "rb"))
 
-DEC_Cluster_results3 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_0.30640745.pkl", "rb"))
+DEC_Cluster_results3 = pickle.load(open("/content/drive/.......ensemble_alg/Final_ensemble/DEC_hom_ens_0.30640745.pkl", "rb"))
 
-DEC_Cluster_results4 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_03315.pkl", "rb"))
+DEC_Cluster_results4 = pickle.load(open("/content/drive.......Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_03315.pkl", "rb"))
 
 DEC_Cluster_results1
 
@@ -287,15 +287,15 @@ u,indices = np.unique(DEC_Cluster_results1,return_counts = True) # sc=0.3412 st 
 print(silh)
 print(u,indices)
 
-DTC_Cluster_results1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
+DTC_Cluster_results1 = pickle.load(open("/content/drive/......./final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
 
-DTC_Cluster_results2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3367.pkl", "rb"))
+DTC_Cluster_results2 = pickle.load(open("/content/drive/.......stering/final/ensemble_alg/Final_ensemble/DTC_3367.pkl", "rb"))
 
-DTC_Cluster_results3 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_hom_ens_034.pkl", "rb"))
+DTC_Cluster_results3 = pickle.load(open("/content/drive/M.......ensemble_alg/Final_ensemble/DTC_hom_ens_034.pkl", "rb"))
 
-DTC_Cluster_results4 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3226.pkl", "rb"))
+DTC_Cluster_results4 = pickle.load(open("/content/drive/M.......l/ensemble_alg/Final_ensemble/DTC_3226.pkl", "rb"))
 
-DTC_Cluster_results5 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3124.pkl", "rb"))
+DTC_Cluster_results5 = pickle.load(open("/content/drive/M.......ensemble_alg/Final_ensemble/DTC_3124.pkl", "rb"))
 
 DTC_Cluster_results1
 
@@ -305,11 +305,11 @@ u,indices = np.unique(DTC_Cluster_results1,return_counts = True) # sc=0.3412 st 
 print(silh)
 print(u,indices)
 
-KMeans_Cluster_results1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3389.pkl", "rb"))
+KMeans_Cluster_results1 = pickle.load(open("/content/drive......./final/ensemble_alg/Final_ensemble/KMeans_0.3389.pkl", "rb"))
 
-KMeans_Cluster_results2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.313.pkl", "rb"))
+KMeans_Cluster_results2 = pickle.load(open("/content/drive/......./final/ensemble_alg/Final_ensemble/KMeans_0.313.pkl", "rb"))
 
-KMeans_Cluster_results3 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3125.pkl", "rb"))
+KMeans_Cluster_results3 = pickle.load(open("/content/drive/............../ensemble_alg/Final_ensemble/KMeans_0.3125.pkl", "rb"))
 
 KMeans_Cluster_results1
 
@@ -378,7 +378,7 @@ unique_labels = np.unique(np.concatenate(sim_matrixx))
 print(sim_matrixx)
 print(sim_matrixx.shape)
 print(unique_labels)
-#np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy', sim_matrixx)
+#np.save('/content/drive/.......ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 # To normalize a matrix
@@ -434,11 +434,11 @@ avg_inter_dist(data_nor, final_labels)
 
 from sklearn.metrics import pairwise_distances
 
-dsc_ens = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_fin_ens_0.32257442534935293.pkl", "rb"))
-dec_ens = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_fin_ens_0.3135124.pkl", "rb"))
-km_ens = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/kmeans_fin_ens_0.32412578566580286.pkl", "rb"))
+dsc_ens = pickle.load(open("/content/drive/.......final/ensemble_alg/Final_ensemble/DSC_fin_ens_0.32257442534935293.pkl", "rb"))
+dec_ens = pickle.load(open("/content/d.......final/ensemble_alg/Final_ensemble/DEC_fin_ens_0.3135124.pkl", "rb"))
+km_ens = pickle.load(open("/content/drive/......./final/ensemble_alg/Final_ensemble/kmeans_fin_ens_0.32412578566580286.pkl", "rb"))
 
-#dtc_ens = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_fin_ens_0.3135124.pkl", "rb"))
+#dtc_ens = pickle.load(open("/content/drive......./ensemble_alg/Final_ensemble/DEC_fin_ens_0.3135124.pkl", "rb"))
 
 
 
@@ -469,7 +469,7 @@ unique_labels = np.unique(np.concatenate(sim_matrixx))
 print(sim_matrixx)
 print(sim_matrixx.shape)
 print(unique_labels)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/......./final/ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 
@@ -511,7 +511,7 @@ avg_inter_dist(data_nor, final_labels)
 
 from sklearn.decomposition import NMF
 
-sim_matrixx = np.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy')
+sim_matrixx = np.load('/content/......./final/ensemble_alg/Non-negative Matrix Factorization/fin_ens_co_occurrence_matrix.npy')
 
 #sim_matrixx
 
@@ -722,7 +722,7 @@ u,indices = np.unique(label_hbgf,return_counts = True) # sc=0.3412 st 64
 print(silh)
 print(u,indices)
 
-#path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+#path = '/content/drive......./final/ensemble_alg/Final_ensemble/'
 pickle.dump(label_hbgf, open(path + 'HBGF_ens_' + str(silh) + '.pkl', "wb"))
 
 silh = silhouette_score1(data_nor,  label_hbgf)
@@ -793,7 +793,7 @@ print("Inter-cluster distance ", avg_inter_dist(data_nor, resultss))
 
 """# **HESC_hbgp**"""
 
-hbgp = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/HBGF_enss_0.30932982840030593.pkl", "rb"))
+hbgp = pickle.load(open("/content/............../Final_ensemble/HBGF_enss_0.30932982840030593.pkl", "rb"))
 
 silh = silhouette_score1(data_nor_eval,  hbgp)
 u,indices = np.unique(hbgp,return_counts = True) # sc=0.3412 st 64
@@ -815,9 +815,9 @@ avg_inter_dist(data_nor, hbgp)
 
 
 
-co_occ = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/co-occ_ens_0.35889223651046626.pkl", "rb"))
+co_occ = pickle.load(open("/content/......./ensemble_alg/Final_ensemble/co-occ_ens_0.35889223651046626.pkl", "rb"))
 
-nnmf = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/nmf_ens0.35258519039733466.pkl", "rb"))
+nnmf = pickle.load(open("/content/drive/.......final/ensemble_alg/Final_ensemble/nmf_ens0.35258519039733466.pkl", "rb"))
 
 NUM_alg = 100
 occurrence_threshold = 0.2
@@ -839,7 +839,7 @@ print(final_matrix)
 print(final_matrix.shape)
 print(unique_labels)
 
-#final_labels1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/co-occ_ens_0.35936684974088645.pkl", "rb"))
+#final_labels1 = pickle.load(open("/content/......./final/ensemble_alg/Final_ensemble/co-occ_ens_0.35936684974088645.pkl", "rb"))
 ch_index1s2 = calinski_harabasz_score(data_nor, nnmf)
 
 print(ch_index1s2)
@@ -892,14 +892,14 @@ from sklearn.metrics import calinski_harabasz_score
 
 
 
-final_labels1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/co-occ_ens_0.35936684974088645.pkl", "rb"))
+final_labels1 = pickle.load(open("/content/drive/.......final/ensemble_alg/Final_ensemble/co-occ_ens_0.35936684974088645.pkl", "rb"))
 ch_index12 = calinski_harabasz_score(data_nor, final_labels1)
 
 print(ch_index12)
 
 """# **DTC**"""
 
-final_labels2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_22.pkl", "rb"))
+final_labels2 = pickle.load(open("/content/drive/......./final/ensemble_alg/Final_ensemble/DTC_22.pkl", "rb"))
 
 ch_index2 = calinski_harabasz_score(data_nor, final_labels2)
 
@@ -907,15 +907,15 @@ print(ch_index2)
 
 """# **DSC**"""
 
-final_labels3 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
-#/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_hom_ens_0.32763868041010935.pkl
+final_labels3 = pickle.load(open("/content/drive/......./ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
+#/content/drive/......./final/ensemble_alg/Final_ensemble/DSC_hom_ens_0.32763868041010935.pkl
 ch_index3 = calinski_harabasz_score(data_nor, final_labels3)
 
 print(ch_index3)
 
 """# **DEC**"""
 
-final_labels4 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_03315.pkl", "rb"))
+final_labels4 = pickle.load(open("/content/drive......./ensemble_alg/Final_ensemble/DEC_hom_ens_03315.pkl", "rb"))
 
 ch_index4 = calinski_harabasz_score(data_nor, final_labels4)
 
