@@ -217,7 +217,7 @@ class CNNModel(object):
 
     def fit(self, x, y=None, maxiter=2e4, batch_size=256, tol=1e-3,
             update_interval=140, save_dir='/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DSC_2/saved'):
-
+                
         print('Update interval', update_interval)
         save_interval = 500
         print('Save interval', save_interval)
