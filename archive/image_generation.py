@@ -77,7 +77,7 @@ def image_saving(data_variable, saving_path):
 
 
 if __name__ == '__main__':
-        data = xr.open_dataset("/Users/jianwu/Data/ECRP_ERA5/ERA5_sample_hourly_20200201-20200331.nc")
+        data = xr.open_dataset("/Users/////Data/ECRP_ERA5/ERA5_sample_hourly_20200201-20200331.nc")
         print(data.data_vars)
         image_saving(data['v10'], "/Users/jianwu/Data/ECRP_ERA5/")
         #for data_key in data.data_vars:
