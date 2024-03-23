@@ -48,7 +48,7 @@ def image_feature(path, image_size):
 if __name__ == '__main__':
     var_name = "u10"
     img_path = "/Volumes/GoogleDrive/.shortcut-targets-by-id/1vfQuEpjPQbXwHTxqAw34ALMoA45PJ7KQ/ECRP_Data_Science/Zheng/new_data_images/" + var_name
-    work_dir = "/Users/jianwu/Data/ECRP_ERA5/version-2/csv"
+    work_dir = "/Users//////Data/ECRP_ERA5/version-2/csv"
     # the size of the new figure is 41x41
     img_features, img_names = image_feature(img_path, (41, 41))
 
