@@ -229,7 +229,7 @@ class DEC(object):
         clustering_layer = ClusteringLayer(self.n_clusters, name='clustering')(self.encoder.output)
         self.model = Model(inputs=self.encoder.input, outputs=clustering_layer)
 
-    def pretrain(self, x, y=None, optimizer='adam', epochs=200, batch_size=256, save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DEC_1'):
+    def pretrain(self, x, y=None, optimizer='adam', epochs=200, batch_size=256, save_dir='/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/DEC_1'):
         print('...Pretraining...')
         self.autoencoder.compile(optimizer=optimizer, loss='mse')
 
@@ -283,7 +283,7 @@ class DEC(object):
         self.model.compile(optimizer=optimizer, loss=loss)
 
     def fit(self, x, y=None, maxiter=2e4, batch_size=256, tol=1e-3,
-            update_interval=140, save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DEC_1'):
+            update_interval=140, save_dir='/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/DEC_1'):
 
         print('Update interval', update_interval)
         save_interval = 500
@@ -369,7 +369,7 @@ def data_preprocessing(data_path):
   rdata_daily_np_array_T_R_nor = np.float32(rdata_daily_np_array_T_R_nor)    # convert the data type to float32, otherwise the loass will be out-of-limit
   return rdata_daily_np_array_T_R_nor
 
-path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+path = '/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
 
 data_path ='/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc'
 data_nor = data_preprocessing(data_path)
@@ -394,7 +394,7 @@ def main():
     update_interval = 30
     tol = 0.000001
     ae_weights = None
-    save_dir = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DEC_1'
+    save_dir = '/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/DEC_1'
 
     # load dataset
     x = data_nor
@@ -702,14 +702,14 @@ sim_matrixx[sim_matrixx < occurrence_threshold] = 0
 unique_labels = np.unique(np.concatenate(clustering_models))
 
 print(sim_matrixx)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DEC_ens_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/DEC_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 import numpy as geek
 
 data_nor_eval = data_nor
 
-#sim_matrixx = geek.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
+#sim_matrixx = geek.load('/content/drive/MyDrive/......./Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
 
 from sklearn.cluster import SpectralClustering
 spec_clt = SpectralClustering(n_clusters=7, affinity='precomputed',
@@ -718,7 +718,7 @@ final_labels = spec_clt.fit_predict(sim_matrixx)
 
 
 
-# result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
+# result = pickle.load(open("/content/drive/......./Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
 """# **Evaluation Metrics**"""
 
