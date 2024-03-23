@@ -242,7 +242,7 @@ DSC_cluster_result = pickle.load(open("/content/drive/M......._alg/Final_ensembl
 
 DSC_cluster_result1 = pickle.load(open("/content/......./ensemble_alg/Final_ensemble/DEC_hom_ens_0.34805576652439557.pkl", "rb"))
 
-DSC_cluster_result2 = pickle.load(open("/content/......./ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
+DSC_cluster_result2 = pickle.load(open("/content/......../ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
 
 DSC_cluster_result
 
