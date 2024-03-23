@@ -216,7 +216,7 @@ class CNNModel(object):
         self.model.compile(optimizer=optimizer, loss=['mse', 'kld'])
 
     def fit(self, x, y=None, maxiter=2e4, batch_size=256, tol=1e-3,
-            update_interval=140, save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DSC_2/saved'):
+            update_interval=140, save_dir='/content/drive/MyDrive//Ensemble_Clustering/final/ensemble_alg/DSC_2/saved'):
 
         print('Update interval', update_interval)
         save_interval = 500
