@@ -511,7 +511,7 @@ class DTC:
                  optimizer='adam',
                  epochs=10,
                  batch_size=64,
-                 save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model',
+                 save_dir='/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model',
                  verbose=1):
         """
         Pre-train the autoencoder using only MSE reconstruction loss
@@ -543,7 +543,7 @@ class DTC:
             tol=0.001,
             patience=5,
             finetune_heatmap_at_epoch=8,
-            save_dir='/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model'):
+            save_dir='/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model'):
         """
         Training procedure
         # Arguments
@@ -748,7 +748,7 @@ def data_preprocessing(data_path):
   rdata_daily_np_array_T_R_nor = np.float32(rdata_daily_np_array_T_R_nor)    # convert the data type to float32, otherwise the loass will be out-of-limit
   return rdata_daily_np_array_T_R_nor
 
-path = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
+path = '/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
 
 data_path = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
 nor_data = data_preprocessing(data_path)
@@ -788,7 +788,7 @@ class Config(object):
     finetune_heatmap_at_epoch = 8 #, type=int, help='epoch where heatmap finetuning starts')
     initial_heatmap_loss_weight = 0.1 #, type=float, help='initial weight of heatmap loss vs clustering loss')
     final_heatmap_loss_weight = 0.9 #, type=float, help='final weight of heatmap loss vs clustering loss (heatmap finetuning)')
-    save_dir = '/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model'
+    save_dir = '/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DTC-Clustering-Model'
 
 
 
@@ -1150,14 +1150,14 @@ sim_matrixx[sim_matrixx < occurrence_threshold] = 0
 unique_labels = np.unique(np.concatenate(clustering_models))
 
 print(sim_matrixx)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DSC_ens_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DSC_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 import numpy as geek
 
 data_nor_eval = data_nor
 
-#sim_matrixx = geek.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
+#sim_matrixx = geek.load('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
 
 from sklearn.cluster import SpectralClustering
 spec_clt = SpectralClustering(n_clusters=7, affinity='precomputed',
@@ -1166,7 +1166,7 @@ final_labels = spec_clt.fit_predict(sim_matrixx)
 
 pickle.dump(final_labels, open(path + 'DSC_fin_ens_' + str(silh) + '.pkl', "wb"))
 
-# result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
+# result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
 """# **Evaluation Metrics**"""
 
@@ -1251,12 +1251,12 @@ print("Inter-cluster distance ", avg_inter_dist(data_nor, result_ce))
 
 
 
-# result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_295.pkl", "rb"))
-# result_1 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_295.pkl", "rb"))
-# result_2 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3367.pkl", "rb"))
-# result_3 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3124.pkl", "rb"))
-# result_4 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3226.pkl", "rb"))
-# result_5 = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_02014.pkl", "rb"))
+# result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_295.pkl", "rb"))
+# result_1 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_295.pkl", "rb"))
+# result_2 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3367.pkl", "rb"))
+# result_3 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3124.pkl", "rb"))
+# result_4 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3226.pkl", "rb"))
+# result_5 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_02014.pkl", "rb"))
 
 clusters_list = [ result_1, result_2, result_3, result_4,result_5]
 
@@ -1297,14 +1297,14 @@ sim_matrixx[sim_matrixx < occurrence_threshold] = 0
 unique_labels = np.unique(np.concatenate(clustering_models))
 
 print(sim_matrixx)
-np.save('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DTC_ens_co_occurrence_matrix.npy', sim_matrixx)
+np.save('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DTC_ens_co_occurrence_matrix.npy', sim_matrixx)
 #print(norm_sim_matrix)
 
 import numpy as geek
 
 data_nor_eval = data_nor
 
-#sim_matrixx = geek.load('/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
+#sim_matrixx = geek.load('/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Non-negative Matrix Factorization/DEC_co_occurrence_matrix.npy')
 
 from sklearn.cluster import SpectralClustering
 spec_clt = SpectralClustering(n_clusters=7, affinity='precomputed',
@@ -1363,9 +1363,9 @@ print(u,indices)
 
 
 
-pickle.dump(final_labels, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_hom_ens_034.pkl", "wb"))
+pickle.dump(final_labels, open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_hom_ens_034.pkl", "wb"))
 
-#cluster_result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/test_clustering_results30.pkl", "rb"))
+#cluster_result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/test_clustering_results30.pkl", "rb"))
 
 
 
@@ -1588,7 +1588,7 @@ df1 = pd.DataFrame(df2, columns=['time_step'])
 df1['clusterid'] =  clusters
 #df1["cluster"] = cluster.labels_
 df1['clusterid'].value_counts()
-df1.to_csv("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/DEC_clustering.csv")
+df1.to_csv("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/DEC_clustering.csv")
 df1
 
 df1.groupby('clusterid').count()
@@ -1603,9 +1603,9 @@ print(u,indices)
 
 import pickle
 
-pickle.dump(clusters, open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_ensemble2_028.pkl", "wb"))
+pickle.dump(clusters, open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_ensemble2_028.pkl", "wb"))
 
-#cluster_result = pickle.load(open("/content/drive/MyDrive/Jianwu-Wang-Francis-Nji/Papers-by-Francis/Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_ensemble2_028.pkl", "rb"))
+#cluster_result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_ensemble2_028.pkl", "rb"))
 
 """**Evaluations**"""
 
