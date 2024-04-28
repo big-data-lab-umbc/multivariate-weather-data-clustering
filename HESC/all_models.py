@@ -11,18 +11,27 @@ drive.mount('/content/drive')
 # Install dask.dataframe
 !pip install "dask[dataframe]"
 !pip install netCDF4
+!pip install PyMetis
+!pip install kahypar
 
-import pandas as pd
+import os
+import warnings
+from typing import Optional
 import numpy as np
-import time
+import pandas as pd
+import xarray as xr
+import pymetis
+import kahypar
+from scipy import sparse
+from sklearn.metrics import pairwise_distances, normalized_mutual_info_score
+from sklearn.utils.extmath import safe_sparse_dot
+
+from sklearn.metrics import silhouette_score, pairwise_distances, davies_bouldin_score
+from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import cm
-#import netCDF4
-# from netCDF4 import Dataset
-# import netCDF4 as nc
 import random
 import netCDF4 as nc
-import xarray as xr
 import datetime
 import datetime as dt
 from netCDF4 import date2num,num2date
@@ -40,36 +49,18 @@ from collections import defaultdict
 from scipy.sparse import csr_matrix
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import adjusted_rand_score
-
 import seaborn as sns
-import xarray as xr
-#from mwdc.clustering.st_agglomerative import st_agglomerative
-
-import warnings
-warnings.filterwarnings("ignore")
-
-# import netCDF4
-# from netCDF4 import Dataset
-from sklearn.preprocessing import StandardScaler
 from scipy.cluster.hierarchy import dendrogram, linkage
 import scipy.cluster.hierarchy as sch
 from sklearn.cluster import AgglomerativeClustering
-# from mwdc.visualization.clusterplotting import clusterPlot2D
-# from mwdc.visualization.visualization import visualization2
-# from mwdc.preprocessing.preprocessing import data_preprocessing
-# from mwdc.evaluation.st_evaluation import st_rmse_df, st_corr, st_rmse_np
-# from mwdc.clustering.st_agglomerative import st_agglomerative
-
 import sys
 import pickle
 import matplotlib as mpl
 import matplotlib.colors as colors
-import os
-import xarray as xr
-import warnings
+
 warnings.filterwarnings("ignore")
 
-!pip install netCDF4
+
 
 from sklearn.metrics import silhouette_samples, silhouette_score
 
@@ -79,6 +70,8 @@ def silhouette_score1(X, labels, *, metric="cosine", sample_size=None, random_st
 ## This function will will pre-process our daily data for DEC model as numpy array
 from sklearn import preprocessing
 from sklearn.preprocessing import MinMaxScaler
+
+warnings.filterwarnings("ignore")
 
 def data_preprocessing(data_path):
   rdata_daily = xr.open_dataset(data_path)    # data_path = '/content/drive/MyDrive/ERA5_Dataset.nc'
@@ -213,17 +206,8 @@ def avg_inter_dist(norm_data, clustering_results):
 
 """# **Implementation**"""
 
-#path2 = ('/content/drive/MyDrive/Data/mock_v4.nc')
 path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily_smalldomain.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_hourly.nc')
-#path2 = ('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_hourly_smalldomain.nc')
 data = xr.open_dataset(path2, decode_times=False)#To view the date as integers of 0, 1, 2,....
-#data = xr.open_dataset(path2)# decode_times=False) #To view the date as integers of 0, 1, 2,....
-#data5 = xr.open_dataset(path2) # To view time in datetime format
-var = list(data.variables)[3:]
-data
 var = list(data.variables)[3:]
 
 path = '/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/'
@@ -234,39 +218,18 @@ data_nor.shape, data_clustering.shape
 
 data_nor_nor = data_nor
 
+###################################################################
+
+##DSC homogeneous clustering results
 DSC_cluster_result = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_Ensemble1_032.pkl", "rb"))
 
 DSC_cluster_result1 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_0.34805576652439557.pkl", "rb"))
 
 DSC_cluster_result2 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DSC_hom_ens_0.35190532062602214.pkl", "rb"))
 
-DSC_cluster_result
+###################################################################
 
-silh = silhouette_score1(data_nor,  DSC_cluster_result)
-u,indices = np.unique(DSC_cluster_result,return_counts = True) # sc=0.3412 st 64
-# u,indices
-print(silh)
-print(u,indices)
-
-data_nor_eval = data_nor
-
-result = DSC_cluster_result
-
-from sklearn.metrics import davies_bouldin_score
-
-db = davies_bouldin_score(data_nor, DSC_cluster_result)
-print("Davies-Bouldin score is ", db)
-
-from sklearn.metrics import calinski_harabasz_score
-ch = calinski_harabasz_score(data_nor, DSC_cluster_result)
-print("Davies-Bouldin score is ", ch)
-
-print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', DSC_cluster_result))
-
-print("Variance is ", avg_var(data_nor, DSC_cluster_result))
-
-print("Inter-cluster distance ", avg_inter_dist(data_nor, DSC_cluster_result))
-
+##DEC homogeneous clustering results
 DEC_Cluster_results1 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
 
 DEC_Cluster_results2 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_0.30096328.pkl", "rb"))
@@ -275,14 +238,9 @@ DEC_Cluster_results3 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clust
 
 DEC_Cluster_results4 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_hom_ens_03315.pkl", "rb"))
 
-DEC_Cluster_results1
+###################################################################
 
-silh = silhouette_score1(data_nor,  DEC_Cluster_results1)
-u,indices = np.unique(DEC_Cluster_results1,return_counts = True) # sc=0.3412 st 64
-# u,indices
-print(silh)
-print(u,indices)
-
+##DTC homogeneous clustering results
 DTC_Cluster_results1 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DEC_Ensemble1_034.pkl", "rb"))
 
 DTC_Cluster_results2 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3367.pkl", "rb"))
@@ -293,43 +251,18 @@ DTC_Cluster_results4 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clust
 
 DTC_Cluster_results5 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/DTC_3124.pkl", "rb"))
 
-DTC_Cluster_results1
+###################################################################
 
-silh = silhouette_score1(data_nor,  DTC_Cluster_results1)
-u,indices = np.unique(DTC_Cluster_results1,return_counts = True) # sc=0.3412 st 64
-# u,indices
-print(silh)
-print(u,indices)
-
+##KMeans homogeneous clustering results
 KMeans_Cluster_results1 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3389.pkl", "rb"))
 
 KMeans_Cluster_results2 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.313.pkl", "rb"))
 
 KMeans_Cluster_results3 = pickle.load(open("/content/drive/MyDrive///Ensemble_Clustering/final/ensemble_alg/Final_ensemble/KMeans_0.3125.pkl", "rb"))
 
-KMeans_Cluster_results1
+###################################################################
 
-silh = silhouette_score1(data_nor,  KMeans_Cluster_results1)
-u,indices = np.unique(KMeans_Cluster_results1,return_counts = True) # sc=0.3412 st 64
-# u,indices
-print(silh)
-print(u,indices)
-
-from sklearn.metrics import davies_bouldin_score
-
-db = davies_bouldin_score(data_nor, KMeans_Cluster_results1)
-print("Davies-Bouldin score is ", db)
-
-from sklearn.metrics import calinski_harabasz_score
-ch = calinski_harabasz_score(data_nor, KMeans_Cluster_results1)
-print("Davies-Bouldin score is ", ch)
-
-print("RMSE score is ", total_rmse('/content/drive/MyDrive/Data/ERA5_meteo_sfc_2021_daily.nc', KMeans_Cluster_results1))
-
-print("Variance is ", avg_var(data_nor, KMeans_Cluster_results1))
-
-print("Inter-cluster distance ", avg_inter_dist(data_nor, KMeans_Cluster_results1))
-
+##Main Heterogeneous Ensemble
 """# **HESC_performance**"""
 
 class ClusterSimilarityMatrix():
@@ -609,25 +542,6 @@ avg_var(data_nor, clusters_nmf)
 avg_inter_dist(data_nor, clusters_nmf)
 
 """# **Hybrid Bipartite Graph Formulation (HBGF)**"""
-
-!pip install PyMetis
-
-!pip install kahypar
-
-import os
-import warnings
-from typing import Optional
-import numpy as np
-import pandas as pd
-import xarray as xr
-import pymetis
-import kahypar
-from scipy import sparse
-from sklearn.metrics import pairwise_distances, normalized_mutual_info_score
-from sklearn.utils.extmath import safe_sparse_dot
-
-from sklearn.metrics import silhouette_score, pairwise_distances, davies_bouldin_score
-from sklearn.cluster import KMeans
 
 def create_hypergraph(base_clusters):
     """Create the incidence matrix of base clusters' hypergraph
