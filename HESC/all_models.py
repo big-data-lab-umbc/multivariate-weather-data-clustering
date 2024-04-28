@@ -61,15 +61,11 @@ import matplotlib.colors as colors
 warnings.filterwarnings("ignore")
 
 
-
-from sklearn.metrics import silhouette_samples, silhouette_score
-
 def silhouette_score1(X, labels, *, metric="cosine", sample_size=None, random_state=None, **kwds):
  return np.mean(silhouette_samples(X, labels, metric="cosine", **kwds))
 
 ## This function will will pre-process our daily data for DEC model as numpy array
 from sklearn import preprocessing
-from sklearn.preprocessing import MinMaxScaler
 
 warnings.filterwarnings("ignore")
 
